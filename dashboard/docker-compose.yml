@@ -1,0 +1,136 @@
+version: "3.8"
+
+services:
+  influx:
+    image: influxdb:2.0.4-alpine
+    networks:
+      - public
+      - internal
+    command: influxd run --bolt-path /var/lib/influxdb2/influxd.bolt --engine-path /var/lib/influxdb2/engine --store bolt
+    deploy:
+      update_config:
+        order: stop-first
+      replicas: 1
+    restart: unless-stopped
+
+  db:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    networks:
+      - internal
+    deploy:
+      update_config:
+        order: stop-first
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+    restart: unless-stopped
+
+  redis:
+    image: redis:alpine
+    networks:
+      - internal
+    deploy:
+      update_config:
+        order: stop-first
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+    restart: unless-stopped
+
+  renault-collector:
+    image: ghcr.io/solectrus/renault-collector:latest
+    networks:
+      - internal
+    restart: unless-stopped
+    links:
+      - influx
+    environment:
+      - RENAULT_EMAIL=${RENAULT_EMAIL}
+      - RENAULT_PASSWORD=${RENAULT_PASSWORD}
+      - RENAULT_INTERVAL=${RENAULT_INTERVAL}
+      - RENAULT_MODEL=${RENAULT_MODEL}
+      - GIGYA_API_KEY=${GIGYA_API_KEY}
+      - KAMEREON_API_KEY=${KAMEREON_API_KEY}
+      - INFLUX_HOST=influx
+      - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
+      - INFLUX_ORG=${INFLUX_ORG}
+      - INFLUX_BUCKET=${INFLUX_BUCKET}
+    command: bundle exec app/main.rb
+    deploy:
+      update_config:
+        order: stop-first
+    restart: unless-stopped
+
+  forecast-collector:
+    image: ghcr.io/solectrus/forecast-collector:latest
+    networks:
+      - internal
+    links:
+      - influx
+    environment:
+      - INFLUX_HOST=influx
+      - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
+      - INFLUX_ORG=${INFLUX_ORG}
+      - INFLUX_BUCKET=${INFLUX_BUCKET}
+    command: bundle exec app/main.rb
+    deploy:
+      update_config:
+        order: stop-first
+    restart: unless-stopped
+
+  app:
+    image: ghcr.io/solectrus/solectrus:develop
+    networks:
+      - public
+      - internal
+    links:
+      - db
+      - influx
+      - redis
+    ports:
+      - 3000
+    environment:
+      - APP_HOST=${APP_HOST}
+      - FORCE_SSL=${FORCE_SSL}
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+      - SENTRY_DNS=${SENTRY_DNS}
+      - SENTRY_CSP=${SENTRY_CSP}
+      - PLAUSIBLE_URL=${PLAUSIBLE_URL}
+      - INSTALLATION_DATE=${INSTALLATION_DATE}
+      - ELECTRICITY_PRICE=${ELECTRICITY_PRICE}
+      - FEED_IN_TARIFF=${FEED_IN_TARIFF}
+      - DB_HOST=db
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_USER=postgres
+      - REDIS_URL=redis://redis:6379/1
+      - INFLUX_HOST=influx
+      - INFLUX_TOKEN=${INFLUX_TOKEN_READ}
+      - INFLUX_ORG=${INFLUX_ORG}
+      - INFLUX_BUCKET=${INFLUX_BUCKET}
+    deploy:
+      update_config:
+        order: start-first
+        failure_action: rollback
+        delay: 10s
+      rollback_config:
+        parallelism: 0
+        order: stop-first
+      restart_policy:
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      replicas: 1
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 3000 || exit 1"]
+    restart: unless-stopped
+
+networks:
+  internal:
+    driver_opts:
+      encrypted: ""
+  public:
+    external: true
