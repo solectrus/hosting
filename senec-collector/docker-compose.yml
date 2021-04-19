@@ -15,4 +15,3 @@ services:
     command: bundle exec app/main.rb
     privileged: true
     network_mode: host
-    restart: unless-stopped
