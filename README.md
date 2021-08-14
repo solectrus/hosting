@@ -1,4 +1,4 @@
-# SOLECTRUS hosting example
+# Solectrus hosting example
 
 This repository acts as a template to get up and running with Solectrus.
 
