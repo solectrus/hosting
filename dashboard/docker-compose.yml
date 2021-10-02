@@ -60,7 +60,7 @@ services:
       - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
       - INFLUX_ORG=${INFLUX_ORG}
       - INFLUX_BUCKET=${INFLUX_BUCKET}
-    command: bundle exec app/main.rb
+    command: bundle exec src/main.rb
 
   app:
     image: ghcr.io/solectrus/solectrus:latest
