@@ -1,16 +1,21 @@
-version: "3.8"
+version: "3.7"
 
 services:
   influx:
     image: influxdb:2.1.1-alpine
-    ports:
-      - 8086
     volumes:
-      - ${INFLUXDB_VOLUME_PATH}:/var/lib/influxdb2
+      - ${INFLUX_VOLUME_PATH}:/var/lib/influxdb2
     networks:
-      - public
       - internal
-    command: influxd run --bolt-path /var/lib/influxdb2/influxd.bolt --engine-path /var/lib/influxdb2/engine --store bolt
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUX_USERNAME}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUX_PASSWORD}
+      - DOCKER_INFLUXDB_INIT_ORG=${INFLUX_ORG}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUX_BUCKET}
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUX_ADMIN_TOKEN}
+    command: influxd run --bolt-path /var/lib/influxdb2/influxd.bolt --engine-path /var/lib/influxdb2/engine --store disk
+    restart: always
 
   db:
     image: postgres:14-alpine
@@ -24,6 +29,7 @@ services:
       timeout: 5s
     volumes:
       - ${DB_VOLUME_PATH}:/var/lib/postgresql/data
+    restart: always
 
   redis:
     image: redis:alpine
@@ -35,73 +41,87 @@ services:
       timeout: 5s
     volumes:
       - ${REDIS_VOLUME_PATH}:/data
+    restart: always
 
-  renault-collector:
-    image: ghcr.io/solectrus/renault-collector:latest
-    networks:
-      - internal
-    links:
-      - influx
-    environment:
-      - RENAULT_EMAIL=${RENAULT_EMAIL}
-      - RENAULT_PASSWORD=${RENAULT_PASSWORD}
-      - RENAULT_INTERVAL=${RENAULT_INTERVAL}
-      - RENAULT_MODEL=${RENAULT_MODEL}
-      - GIGYA_API_KEY=${GIGYA_API_KEY}
-      - KAMEREON_API_KEY=${KAMEREON_API_KEY}
-      - INFLUX_HOST=influx
-      - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
-      - INFLUX_ORG=${INFLUX_ORG}
-      - INFLUX_BUCKET=${INFLUX_BUCKET}
-    command: bundle exec app/main.rb
+  # renault-collector:
+  #   image: ghcr.io/solectrus/renault-collector:latest
+  #   networks:
+  #     - internal
+  #   links:
+  #     - influx
+  #   depends_on:
+  #     - influx
+  #   environment:
+  #     - RENAULT_EMAIL
+  #     - RENAULT_PASSWORD
+  #     - RENAULT_INTERVAL
+  #     - RENAULT_MODEL
+  #     - GIGYA_API_KEY
+  #     - KAMEREON_API_KEY
+  #     - INFLUX_HOST=influx
+  #     - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
+  #     - INFLUX_ORG
+  #     - INFLUX_BUCKET
+  #   command: bundle exec app/main.rb
 
   forecast-collector:
     image: ghcr.io/solectrus/forecast-collector:latest
     networks:
       - internal
+    depends_on:
+      - influx
     links:
       - influx
     environment:
       - INFLUX_HOST=influx
       - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
-      - INFLUX_ORG=${INFLUX_ORG}
-      - INFLUX_BUCKET=${INFLUX_BUCKET}
+      - INFLUX_ORG
+      - INFLUX_BUCKET
+      - FORECAST_LATITUDE
+      - FORECAST_LONGITUDE
+      - FORECAST_DECLINATION
+      - FORECAST_AZIMUTH=20
+      - FORECAST_KWP
+      - FORECAST_INTERVAL
     command: bundle exec src/main.rb
+    restart: always
 
   app:
     image: ghcr.io/solectrus/solectrus:latest
     networks:
-      - public
       - internal
+    depends_on:
+      - db
+      - influx
+      - redis
     links:
       - db
       - influx
       - redis
     ports:
-      - 3000
+      - 80:3000
     environment:
-      - APP_HOST=${APP_HOST}
-      - FORCE_SSL=${FORCE_SSL}
-      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
-      - HONEYBADGER_API_KEY=${HONEYBADGER_API_KEY}
-      - PLAUSIBLE_URL=${PLAUSIBLE_URL}
-      - INSTALLATION_DATE=${INSTALLATION_DATE}
-      - ELECTRICITY_PRICE=${ELECTRICITY_PRICE}
-      - FEED_IN_TARIFF=${FEED_IN_TARIFF}
+      - APP_HOST
+      - FORCE_SSL
+      - SECRET_KEY_BASE
+      - HONEYBADGER_API_KEY
+      - PLAUSIBLE_URL
+      - INSTALLATION_DATE
+      - ELECTRICITY_PRICE
+      - FEED_IN_TARIFF
       - DB_HOST=db
       - DB_PASSWORD=${POSTGRES_PASSWORD}
       - DB_USER=postgres
       - REDIS_URL=redis://redis:6379/1
       - INFLUX_HOST=influx
       - INFLUX_TOKEN=${INFLUX_TOKEN_READ}
-      - INFLUX_ORG=${INFLUX_ORG}
-      - INFLUX_BUCKET=${INFLUX_BUCKET}
+      - INFLUX_ORG
+      - INFLUX_BUCKET
     healthcheck:
       test: ["CMD-SHELL", "nc -z 127.0.0.1 3000 || exit 1"]
+    restart: always
 
 networks:
   internal:
     driver_opts:
       encrypted: ""
-  public:
-    external: true

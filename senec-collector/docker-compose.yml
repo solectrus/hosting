@@ -4,14 +4,15 @@ services:
   senec-collector:
     image: ghcr.io/solectrus/senec-collector:latest
     environment:
-      - SENEC_HOST=${SENEC_HOST}
-      - SENEC_INTERVAL=${SENEC_INTERVAL}
-      - INFLUX_HOST=${INFLUX_HOST}
-      - INFLUX_SCHEMA=${INFLUX_SCHEMA}
-      - INFLUX_PORT=${INFLUX_PORT}
-      - INFLUX_TOKEN=${INFLUX_TOKEN}
-      - INFLUX_ORG=${INFLUX_ORG}
-      - INFLUX_BUCKET=${INFLUX_BUCKET}
+      - SENEC_HOST
+      - SENEC_INTERVAL
+      - INFLUX_HOST
+      - INFLUX_SCHEMA
+      - INFLUX_PORT
+      - INFLUX_TOKEN
+      - INFLUX_ORG
+      - INFLUX_BUCKET
     command: bundle exec src/main.rb
     privileged: true
     network_mode: host
+    restart: always
