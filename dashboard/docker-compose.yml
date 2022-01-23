@@ -83,7 +83,6 @@ services:
       - FORECAST_AZIMUTH=20
       - FORECAST_KWP
       - FORECAST_INTERVAL
-    command: bundle exec src/main.rb
     restart: always
 
   app:
