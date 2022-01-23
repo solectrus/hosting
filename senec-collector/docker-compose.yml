@@ -3,15 +3,7 @@ version: "2"
 services:
   senec-collector:
     image: ghcr.io/solectrus/senec-collector:latest
-    environment:
-      - SENEC_HOST
-      - SENEC_INTERVAL
-      - INFLUX_HOST
-      - INFLUX_SCHEMA
-      - INFLUX_PORT
-      - INFLUX_TOKEN
-      - INFLUX_ORG
-      - INFLUX_BUCKET
+    env_file: .env
     privileged: true
     network_mode: host
     restart: always
