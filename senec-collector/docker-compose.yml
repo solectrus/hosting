@@ -12,7 +12,6 @@ services:
       - INFLUX_TOKEN
       - INFLUX_ORG
       - INFLUX_BUCKET
-    command: bundle exec src/main.rb
     privileged: true
     network_mode: host
     restart: always
