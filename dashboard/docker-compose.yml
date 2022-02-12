@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-  influx:
+  influxdb:
     image: influxdb:2.1.1-alpine
     volumes:
       - ${INFLUX_VOLUME_PATH}:/var/lib/influxdb2
@@ -48,9 +48,9 @@ services:
   #   networks:
   #     - internal
   #   links:
-  #     - influx
+  #     - influxdb
   #   depends_on:
-  #     - influx
+  #     - influxdb
   #   environment:
   #     - RENAULT_EMAIL
   #     - RENAULT_PASSWORD
@@ -58,7 +58,7 @@ services:
   #     - RENAULT_MODEL
   #     - GIGYA_API_KEY
   #     - KAMEREON_API_KEY
-  #     - INFLUX_HOST=influx
+  #     - INFLUX_HOST
   #     - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
   #     - INFLUX_ORG
   #     - INFLUX_BUCKET
@@ -69,18 +69,18 @@ services:
     networks:
       - internal
     depends_on:
-      - influx
+      - influxdb
     links:
-      - influx
+      - influxdb
     environment:
-      - INFLUX_HOST=influx
+      - INFLUX_HOST
       - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
       - INFLUX_ORG
       - INFLUX_BUCKET
       - FORECAST_LATITUDE
       - FORECAST_LONGITUDE
       - FORECAST_DECLINATION
-      - FORECAST_AZIMUTH=20
+      - FORECAST_AZIMUTH
       - FORECAST_KWP
       - FORECAST_INTERVAL
     restart: always
@@ -91,11 +91,11 @@ services:
       - internal
     depends_on:
       - db
-      - influx
+      - influxdb
       - redis
     links:
       - db
-      - influx
+      - influxdb
       - redis
     ports:
       - 80:3000
@@ -112,7 +112,7 @@ services:
       - DB_PASSWORD=${POSTGRES_PASSWORD}
       - DB_USER=postgres
       - REDIS_URL=redis://redis:6379/1
-      - INFLUX_HOST=influx
+      - INFLUX_HOST
       - INFLUX_TOKEN=${INFLUX_TOKEN_READ}
       - INFLUX_ORG
       - INFLUX_BUCKET
@@ -122,5 +122,3 @@ services:
 
 networks:
   internal:
-    driver_opts:
-      encrypted: ""
