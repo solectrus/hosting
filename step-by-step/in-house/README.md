@@ -16,11 +16,11 @@ This machine connects to your SENEC device, so it should be placed in the same n
 
 1. Ensure Docker and Docker Compose is installed and running. Docker 18.06.0 or later is required.
 
-```
-$ docker --version
+```console
+docker --version
 Docker version 20.10.3, build b455053
 
-$ docker-compose -v
+docker-compose -v
 docker-compose version 1.28.5, build 324b023a
 ```
 
@@ -28,27 +28,26 @@ docker-compose version 1.28.5, build 324b023a
 
 On a Synology NAS, there is a `/volume1/docker` folder which is used for Docker volumes. This may be different on your machine.
 
-```
+```console
+ssh [YOUR-SERVER-IP-ADDRESS]
 cd /volume1/docker
 mkdir solectrus
 cd solectrus
-mkdir redis
-mkdir postgresql
-mkdir influxdb
+mkdir redis postgresql influxdb
 ```
 
 3. Download and prepare configuration file
 
 Download the configuration file from the repository;
 
-```
+```console
 curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/step-by-step/in-house/.env" -o /volume1/docker/solectrus/.env
 ```
 
 Edit the downloaded file and change values to your needs.
 
-```
-$ vim .env
+```console
+vim .env
 ```
 
 You should change at least the following values:
@@ -65,13 +64,13 @@ You should change at least the following values:
 
 4. Download Docker compose file `./docker-compose.yml`
 
-```
+```console
 curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/step-by-step/in-house/docker-compose.yml" -o /volume1/docker/solectrus/docker-compose.yml
 ```
 
 4. Start Docker containers
 
-```
+```console
 docker-compose up
 ```
 
@@ -93,16 +92,16 @@ app_1     | Use Ctrl-C to stop
 
 5. Open the app in your browser
 
-http://[[YOUR-SERVER-IP-ADDRESS]]:3000
+`http://[YOUR-SERVER-IP-ADDRESS]:3000`
 
 
 6. Run services in the background
 
-Stop services by pressing ^C
+Stop services by pressing <kbd>Ctrl+C</kbd>
 Start again as daemon:
 
-```
-$ docker-compose up -d
+```console
+docker-compose up -d
 Starting solectrus_redis_1    ... done
 Starting solectrus_db_1       ... done
 Starting solectrus_influxdb_1 ... done
@@ -112,16 +111,17 @@ Starting solectrus_app_1                ... done
 
 This way the services are started in the background. To check if this works, reboot machine:
 
-```
-$ sudo reboot
+```console
+sudo reboot
 ```
 
 Wait a bit, then login again and check if Docker Compose has auto-started the services.
 
-```
-$ ssh root@[YOUR-SERVER-IP-ADDRESS]
-$ cd solectrus
-$ docker ps
+```console
+ssh root@[YOUR-SERVER-IP-ADDRESS]
+cd solectrus
+docker ps
+
 NAMES                            STATUS
 solectrus_app_1                  Up 31 seconds (healthy)
 solectrus_forecast-collector_1   Up 31 seconds

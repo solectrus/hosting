@@ -27,49 +27,49 @@ Wait for the email from Hetzner. Write down the IP address of your server. It wi
 
 Login to your server:
 
-```
-$ ssh root@[YOUR-SERVER-IP-ADDRESS]
+```console
+ssh root@[YOUR-SERVER-IP-ADDRESS]
 ```
 
 If your are not using SSH keys, you are asked to enter your password. Type in our password you get from Hetzner per email. On first login, you are asked to change your password. Choose a strong password.
 
 Check if `Docker` is installed and running:
 
-```bash
-$ docker -v
+```console
+docker -v
 Docker version 20.10.12, build e91ed57
 ```
 
 Nice, `Docker` is preinstalled, but we need to install `Docker Compose`, too:
 
-```bash
-$ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-$ sudo chmod +x /usr/local/bin/docker-compose
-$ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-$ docker-compose -v
+```console
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker-compose -v
 docker-compose version 1.29.2, build 5becea4c
 ```
 
 ### c) Create folders for configuration and Docker volumes:
 
-```bash
-$ mkdir solectrus
-$ cd solectrus
-$ mkdir redis postgresql influxdb
+```console
+mkdir solectrus
+cd solectrus
+mkdir redis postgresql influxdb
 ```
 
 ### d) Create configuration file
 
 Download the configuration file from the repository;
 
-```bash
-$ curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/step-by-step/external-server/.env" -o ~/solectrus/.env
+```console
+curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/step-by-step/external-server/.env" -o ~/solectrus/.env
 ```
 
 Edit the downloaded file and change values to your needs.
 
-```bash
-$ pico .env
+```console
+pico .env
 ```
 
 You should change at least the following values:
@@ -90,16 +90,16 @@ Save file and close the editor: <kbd>Ctrl+S</kbd>, then <kbd>Ctrl+X</kbd>
 
 ### e) Download Docker compose file `./docker-compose.yml`
 
-```bash
-$ curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/step-by-step/external-server/docker-compose.yml" -o ~/solectrus/docker-compose.yml
+```console
+curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/step-by-step/external-server/docker-compose.yml" -o ~/solectrus/docker-compose.yml
 ```
 
 ### f) Start Docker containers
 
 To check if all works fine, we start the containers in the foreground:
 
-```bash
-$ docker-compose up
+```console
+docker-compose up
 ```
 
 This could take some minutes for the first run, because some images are download. You see some output like this:
@@ -141,8 +141,8 @@ Login with `admin` and the password you defined in `INFLUX_PASSWORD` (see `.env`
 
 Stop services by pressing <kbd>Ctrl+C</kbd>. Then start again as daemon:
 
-```bash
-$ docker-compose up -d
+```console
+docker-compose up -d
 Starting solectrus_redis_1    ... done
 Starting solectrus_db_1       ... done
 Starting solectrus_influxdb_1 ... done
@@ -152,16 +152,16 @@ Starting solectrus_app_1                ... done
 
 To check if this works, reboot the machine:
 
-```bash
-$ sudo reboot
+```console
+sudo reboot
 ```
 
 Wait a bit, then login again and check if Docker Compose has auto-started the services.
 
-```bash
-$ ssh root@[YOUR-SERVER-IP-ADDRESS]
-$ cd solectrus
-$ docker ps
+```console
+ssh root@[YOUR-SERVER-IP-ADDRESS]
+cd solectrus
+docker ps
 
 NAMES                            STATUS
 solectrus_app_1                  Up 31 seconds (healthy)
@@ -184,18 +184,18 @@ You are done with step 1. Solectrus is now installed on your server and can be a
 
 Login to you Raspi and ensure that Docker is installed:
 
-```bash
-$ ssh pi@raspberrypi.local
-$ docker -v
+```console
+ssh pi@raspberrypi.local
+docker -v
 Docker version 20.10.12, build e91ed57
 ```
 
 If Docker is not installed, install it:
 
-```bash
-$ curl -fsSL https://get.docker.com -o get-docker.sh
-$ sudo sh get-docker.sh
-$ sudo usermod -aG docker Pi
+```console
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker Pi
 ```
 
 We don't need Docker Compose on the Raspi, because just one container will be started.
@@ -206,8 +206,8 @@ To run the SENEC collector, first try to start the Docker container in the foreg
 
 IMPORTANT: Change the environment variables to match your SENEC device and your InfluxDB server from step 1!
 
-```bash
-$ docker run \
+```console
+docker run \
          --name senec-collector \
          --privileged \
          --restart unless-stopped \
@@ -224,8 +224,8 @@ $ docker run \
 
 This will most likely be successful, but be sure to check the output:
 
-```bash
-$ docker logs -f senec-collector
+```console
+docker logs -f senec-collector
 ```
 
 If it works, you should see this:
@@ -248,9 +248,9 @@ Great! Since the container runs in the background, it is automatically restarted
 
 If something goes wrong, stop and remove the container first:
 
-```bash
-$ docker stop senec-collector
-$ docker rm senec-collector
+```console
+docker stop senec-collector
+docker rm senec-collector
 ```
 
 Check the arguments of your `docker run` command:
