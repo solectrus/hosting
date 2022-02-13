@@ -14,4 +14,4 @@ There are multiple ways to install Solectrus:
 
 ## License
 
-Copyright (c) 2020-2021 Georg Ledermann, released under the MIT License
+Copyright (c) 2020-2022 Georg Ledermann, released under the MIT License
