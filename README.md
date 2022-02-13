@@ -9,8 +9,8 @@ This repository acts as a template to get up and running with Solectrus.
 
 There are multiple ways to install Solectrus:
 
-2. Distributed installation on Raspberry Pi pushing to a remote server (TODO)
 1. [Local installation on an in-house server](/step-by-step/in-house)
+2. [Distributed installation on Raspberry Pi pushing to a remote server](/step-by-step/external-server)
 
 ## License
 
