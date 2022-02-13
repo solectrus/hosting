@@ -5,8 +5,6 @@ services:
     image: influxdb:2.1.1-alpine
     volumes:
       - ${INFLUX_VOLUME_PATH}:/var/lib/influxdb2
-    networks:
-      - internal
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUX_USERNAME}
@@ -21,32 +19,18 @@ services:
     image: postgres:14-alpine
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    networks:
-      - internal
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
     volumes:
       - ${DB_VOLUME_PATH}:/var/lib/postgresql/data
     restart: always
 
   redis:
     image: redis:alpine
-    networks:
-      - internal
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      timeout: 5s
     volumes:
       - ${REDIS_VOLUME_PATH}:/data
     restart: always
 
   # renault-collector:
   #   image: ghcr.io/solectrus/renault-collector:latest
-  #   networks:
-  #     - internal
   #   links:
   #     - influxdb
   #   depends_on:
@@ -66,8 +50,6 @@ services:
 
   forecast-collector:
     image: ghcr.io/solectrus/forecast-collector:latest
-    networks:
-      - internal
     depends_on:
       - influxdb
     links:
@@ -87,8 +69,6 @@ services:
 
   app:
     image: ghcr.io/solectrus/solectrus:latest
-    networks:
-      - internal
     depends_on:
       - db
       - influxdb
@@ -119,6 +99,3 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "nc -z 127.0.0.1 3000 || exit 1"]
     restart: always
-
-networks:
-  internal:
