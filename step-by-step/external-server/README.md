@@ -178,6 +178,18 @@ You are done with step 1. Solectrus is now installed on your server and can be a
 `http://[YOUR-SERVER-IP-ADDRESS]`
 
 
+### h) Staying up to date
+
+To update your installation to the latest release, run:
+
+```console
+ssh root@[YOUR-SERVER-IP-ADDRESS]
+cd solectrus
+
+docker-compose pull
+docker-compose up -d
+```
+
 ## STEP 2: Install SENEC Collector on a Raspberry Pi
 
 ### a) Prepare Raspberry Pi

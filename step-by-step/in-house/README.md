@@ -129,3 +129,15 @@ solectrus_influxdb_1             Up 33 seconds
 solectrus_redis_1                Up 33 seconds
 solectrus_db_1                   Up 33 seconds
 ```
+
+7. Staying up to date
+
+To update your installation to the latest release, run:
+
+```console
+ssh root@[YOUR-SERVER-IP-ADDRESS]
+cd solectrus
+
+docker-compose pull
+docker-compose up -d
+```
