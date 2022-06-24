@@ -31,8 +31,8 @@ On a Synology NAS, there is a `/volume1/docker` folder which is used for Docker 
 ```console
 ssh [YOUR-SERVER-IP-ADDRESS]
 cd /volume1/docker
-mkdir solectrus
-cd solectrus
+mkdir -p solectrus/dashboard
+cd solectrus/dashboard
 mkdir redis postgresql influxdb
 ```
 
