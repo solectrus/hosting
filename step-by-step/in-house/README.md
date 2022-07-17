@@ -18,10 +18,10 @@ This machine connects to your SENEC device, so it should be placed in the same n
 
 ```console
 docker --version
-Docker version 20.10.3, build b455053
+Docker version 20.10.3, build 55f0773
 
 docker-compose -v
-docker-compose version 1.28.5, build 324b023a
+docker-compose version 1.28.5, build 24fb474e
 ```
 
 2. Create folders for configuration and Docker volumes:

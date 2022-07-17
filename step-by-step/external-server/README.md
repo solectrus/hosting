@@ -37,7 +37,7 @@ Check if `Docker` is installed and running:
 
 ```console
 docker -v
-Docker version 20.10.12, build e91ed57
+Docker version 20.10.17, build 100c701
 ```
 
 Nice, `Docker` is preinstalled, but we need to install `Docker Compose`, too:
@@ -112,7 +112,7 @@ Pulling influxdb (influxdb:2.2.0-alpine)...
 app_1     | Created database 'solectrus_production'
 app_1     | Database is ready!
 app_1     | Puma starting in single mode...
-app_1     | * Puma version: 5.6.2 (ruby 3.1.0-p0) ("Birdie's Version")
+app_1     | * Puma version: 5.6.4 (ruby 3.1.2-p20) ("Birdie's Version")
 app_1     | *  Min threads: 5
 app_1     | *  Max threads: 5
 app_1     | *  Environment: production
