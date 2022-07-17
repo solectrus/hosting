@@ -33,7 +33,7 @@ services:
     restart: always
 
   influxdb:
-    image: influxdb:2.2.0-alpine
+    image: influxdb:2.3.0-alpine
     volumes:
       - ${INFLUX_VOLUME_PATH}:/var/lib/influxdb2
     environment:
