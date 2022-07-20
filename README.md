@@ -1,17 +1,16 @@
 # Solectrus hosting example
 
-There are two different ways to install Solectrus:
+There are two different ways to install **Solectrus**:
 
 1. [Local installation on in-house server](/step-by-step/in-house)
 
-   You need a Linux server with Intel Architecture in your house. Tested with a Synology NAS.
+   You need a Linux server with Intel/AMD architecture at home (tested with a Synology NAS)
 
-2. [Distributed installation on Raspberry Pi pushing to a remote server](/step-by-step/external-server)
+2. [Distributed installation on Raspberry Pi + remote server](/step-by-step/external-server)
 
-   You need a Raspberry Pi in your house **and** a remote server somewhere in the internet. Tested with Hetzner Cloud.
+   You need a Raspberry Pi at home **and** a remote server somewhere on the internet (tested with Hetzner Cloud)
 
-Off course, you can also need a SENEC device in your house ;-)
-
+Of course, you also need a SENEC device connected to your LAN (tested with a SENEC Home V3 hybrid).
 
 ## License
 
