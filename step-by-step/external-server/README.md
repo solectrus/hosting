@@ -43,11 +43,11 @@ Docker version 20.10.17, build 100c701
 Nice, `Docker` is preinstalled, but we need to install `Docker Compose`, too:
 
 ```console
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.10.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 docker-compose -v
-docker-compose version 1.29.2, build 5becea4c
+Docker Compose version v2.10.2
 ```
 
 ### c) Create folders for configuration and Docker volumes:
