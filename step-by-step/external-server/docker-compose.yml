@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   app:
-    image: ghcr.io/solectrus/solectrus:latest
+    image: ghcr.io/solectrus/solectrus:0.6
     depends_on:
       - db
       - influxdb
@@ -20,6 +20,7 @@ services:
       - INSTALLATION_DATE
       - ELECTRICITY_PRICE
       - FEED_IN_TARIFF
+      - ADMIN_PASSWORD
       - DB_HOST=db
       - DB_PASSWORD=${POSTGRES_PASSWORD}
       - DB_USER=postgres

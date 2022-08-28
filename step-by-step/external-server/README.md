@@ -74,6 +74,7 @@ pico .env
 
 You should change at least the following values:
 
+- ADMIN_PASSWORD
 - INSTALLATION_DATE
 - ELECTRICITY_PRICE
 - FEED_IN_TARIFF

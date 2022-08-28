@@ -5,7 +5,7 @@ This example demonstrates how to run **all** components of Solectrus on a single
 - Dashboard (the Solectrus UI)
 - InfluxDB (the database for storing the measurements)
 - Redis (for some caching)
-- PostgreSQL (the SQL database, not used yet)
+- PostgreSQL (the SQL database for storing settings like historical prices)
 - SENEC Collector (live-pulling measurements from SENEC devise and pushing them the InfluxDB)
 - Forecast-Collector (optional)
 - Renault-Collector (optional)
@@ -52,6 +52,7 @@ vim .env
 
 You should change at least the following values:
 
+- ADMIN_PASSWORD
 - INSTALLATION_DATE
 - ELECTRICITY_PRICE
 - FEED_IN_TARIFF
