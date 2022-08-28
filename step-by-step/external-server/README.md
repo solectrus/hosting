@@ -112,7 +112,7 @@ Pulling influxdb (influxdb:2.4.0-alpine)...
 app_1     | Created database 'solectrus_production'
 app_1     | Database is ready!
 app_1     | Puma starting in single mode...
-app_1     | * Puma version: 5.6.4 (ruby 3.1.2-p20) ("Birdie's Version")
+app_1     | * Puma version: 5.6.5 (ruby 3.1.2-p20) ("Birdie's Version")
 app_1     | *  Min threads: 5
 app_1     | *  Max threads: 5
 app_1     | *  Environment: production
@@ -247,7 +247,7 @@ SENEC collector for SOLECTRUS
 https://github.com/solectrus/senec-collector
 Copyright (c) 2020,2022 Georg Ledermann, released under the MIT License
 
-Using Ruby 3.1.0 on platform arm-linux-musleabihf
+Using Ruby 3.1.2 on platform arm-linux-musleabihf
 Pulling from SENEC at [YOUR-SENEC-IP-ADDRESS] every 5 seconds
 Pushing to InfluxDB at http://[YOUR-SERVER-IP-ADDRESS]:8086, bucket my-solectrus-bucket
 
