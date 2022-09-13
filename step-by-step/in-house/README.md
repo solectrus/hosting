@@ -62,6 +62,8 @@ You should change at least the following values:
 - FORECAST_AZIMUTH
 - FORECAST_KWP
 
+Note: Editing the file with `vim` is just an example, because this is the pre-installed editor. You can use any editor you like. If you are not familiar with `vim`, you can use [TextEditor](https://www.synology.com/dsm/packages/TextEditor) by Synology which can be installed as package via DSM.
+
 
 4. Download Docker compose file `./docker-compose.yml`
 
