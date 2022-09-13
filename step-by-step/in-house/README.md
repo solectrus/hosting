@@ -71,7 +71,7 @@ Note: Editing the file with `vim` is just an example, because this is the pre-in
 curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/step-by-step/in-house/docker-compose.yml" -o /volume1/docker/solectrus/docker-compose.yml
 ```
 
-4. Start Docker containers
+5. Start Docker containers
 
 ```console
 docker-compose up
@@ -93,12 +93,12 @@ app_1     | * Listening on http://0.0.0.0:3000
 app_1     | Use Ctrl-C to stop
 ```
 
-5. Open the app in your browser
+6. Open the app in your browser
 
 `http://[YOUR-SERVER-IP-ADDRESS]:3000`
 
 
-6. Run services in the background
+7. Run services in the background
 
 Stop services by pressing <kbd>Ctrl+C</kbd>
 Start again as daemon:
@@ -133,7 +133,7 @@ solectrus_redis_1                Up 33 seconds
 solectrus_db_1                   Up 33 seconds
 ```
 
-7. Staying up to date
+8. Staying up to date
 
 To update your installation to the latest release, run:
 
