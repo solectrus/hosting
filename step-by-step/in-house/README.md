@@ -10,7 +10,7 @@ This example demonstrates how to run **all** components of Solectrus on a single
 - Forecast-Collector (optional)
 - Renault-Collector (optional)
 
-This example is tested on a Synology NAS, but should work on any Linux system with `x86_64` architecture which can run Docker.
+This example is tested on a Synology NAS DS220+, but should work on any Linux system with `x86_64` architecture which can run Docker. A CPU with at least 2 cores is recommended. A Linux Kernel v4 or higher is required, some older NAS devices don't work because they are on Kernel v3 and cannot be updated.
 
 This machine connects to your SENEC device, so it should be placed in the same network.
 
