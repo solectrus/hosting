@@ -6,7 +6,7 @@ This example demonstrates how to run **all** components of Solectrus on a single
 - InfluxDB (the database for storing the measurements)
 - Redis (for some caching)
 - PostgreSQL (the SQL database for storing settings like historical prices)
-- SENEC Collector (live-pulling measurements from SENEC devise and pushing them the InfluxDB)
+- SENEC Collector (pulling measurements from SENEC devise and pushing them the InfluxDB)
 - Forecast-Collector (optional)
 - Renault-Collector (optional)
 
