@@ -50,8 +50,9 @@ Edit the downloaded file and change values to your needs.
 vim .env
 ```
 
-You should change at least the following values:
+IMPORTANT: At least you must change `SENEC_HOST` to the IP address of your SENEC device!
 
+But there are other settings you should update to your needs:
 - ADMIN_PASSWORD
 - INSTALLATION_DATE
 - ELECTRICITY_PRICE
