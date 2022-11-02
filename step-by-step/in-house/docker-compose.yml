@@ -34,7 +34,7 @@ services:
     restart: always
 
   influxdb:
-    image: influxdb:2.4.0-alpine
+    image: influxdb:2.5.0
     volumes:
       - ${INFLUX_VOLUME_PATH}:/var/lib/influxdb2
     environment:
@@ -48,7 +48,7 @@ services:
     restart: always
 
   db:
-    image: postgres:14-alpine
+    image: postgres:14
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
@@ -56,7 +56,7 @@ services:
     restart: always
 
   redis:
-    image: redis:alpine
+    image: redis:7
     volumes:
       - ${REDIS_VOLUME_PATH}:/data
     restart: always
