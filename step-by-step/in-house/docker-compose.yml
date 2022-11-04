@@ -45,6 +45,9 @@ services:
       - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUX_BUCKET}
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUX_ADMIN_TOKEN}
     command: influxd run --bolt-path /var/lib/influxdb2/influxd.bolt --engine-path /var/lib/influxdb2/engine --store disk
+    # Optional: Allow InfluxDB to be accessed from the outside. This is required to import data using senec-importer!
+    # ports:
+    #   - 8086:8086
     restart: always
 
   db:
