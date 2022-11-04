@@ -107,8 +107,8 @@ This could take some minutes for the first run, because some images are download
 
 ```
 Creating network "solectrus_default" with the default driver
-Pulling influxdb (influxdb:2.5.0)...
-2.5.0: Pulling from library/influxdb
+Pulling influxdb (influxdb:2.5.1)...
+2.5.1: Pulling from library/influxdb
 .... lots of other lines here ....
 app_1     | Created database 'solectrus_production'
 app_1     | Database is ready!

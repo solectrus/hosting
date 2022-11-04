@@ -34,7 +34,7 @@ services:
     restart: always
 
   influxdb:
-    image: influxdb:2.5.0
+    image: influxdb:2.5.1
     volumes:
       - ${INFLUX_VOLUME_PATH}:/var/lib/influxdb2
     environment:
