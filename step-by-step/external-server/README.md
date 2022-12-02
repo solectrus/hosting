@@ -19,7 +19,7 @@ Order your server:
 - Image: Select "Apps", then "Docker CE"
 - Type: The smallest machine is enough, so select "CX11"
 - SSH-Key: If you already have an SSH key, you can add it here to avoid struggling with SSH password. Otherwise, leave it blank.
-- Order (for €4,15 per month)
+- Order (for €4,51 per month)
 
 ### b) First Login
 
