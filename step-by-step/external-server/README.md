@@ -8,7 +8,7 @@ This guides demonstrates how to set up a Solectrus instance on a remote server (
 
 Signup on Hetzner:
 https://hetzner.cloud/?ref=NggV8HU9FqCz
-(referral link, will give you a discount of €20)
+(referral link, will give you an discount of €20)
 
 Order your server:
 
@@ -78,6 +78,8 @@ You should change at least the following values:
 - FORECAST_AZIMUTH
 - FORECAST_KWP
 
+WARNING: Don't forget to change passwords, because otherwise everyone can access your database!
+
 Save file and close the editor: <kbd>Ctrl+S</kbd>, then <kbd>Ctrl+X</kbd>
 
 
@@ -105,7 +107,7 @@ Pulling influxdb (influxdb:2.5-alpine)...
 app_1     | Created database 'solectrus_production'
 app_1     | Database is ready!
 app_1     | Puma starting in single mode...
-app_1     | * Puma version: 5.6.5 (ruby 3.1.2-p20) ("Birdie's Version")
+app_1     | * Puma version: 5.6.5 (ruby 3.1.3-p185) ("Birdie's Version")
 app_1     | *  Min threads: 5
 app_1     | *  Max threads: 5
 app_1     | *  Environment: production
@@ -146,7 +148,7 @@ Starting solectrus_app_1                ... done
 To check if this works, reboot the machine:
 
 ```console
-sudo reboot
+reboot
 ```
 
 Wait a bit, then login again and check if Docker Compose has auto-started the services.
