@@ -37,18 +37,10 @@ Check if `Docker` is installed and running:
 
 ```console
 docker -v
-Docker version 20.10.17, build 100c701
+Docker version 20.10.21, build baeda1f
 ```
 
-Nice, `Docker` is preinstalled, but we need to install `Docker Compose`, too:
-
-```console
-sudo curl -L "https://github.com/docker/compose/releases/download/v2.10.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-docker-compose -v
-Docker Compose version v2.10.2
-```
+Nice, `Docker` is preinstalled.
 
 ### c) Create folders for configuration and Docker volumes:
 
@@ -100,7 +92,7 @@ curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/step-by-step/e
 To check if all works fine, we start the containers in the foreground:
 
 ```console
-docker-compose up
+docker compose up
 ```
 
 This could take some minutes for the first run, because some images are download. You see some output like this:
@@ -143,7 +135,7 @@ Login with `admin` and the password you defined in `INFLUX_PASSWORD` (see `.env`
 Stop services by pressing <kbd>Ctrl+C</kbd>. Then start again as daemon:
 
 ```console
-docker-compose up -d
+docker compose up -d
 Starting solectrus_redis_1    ... done
 Starting solectrus_db_1       ... done
 Starting solectrus_influxdb_1 ... done
@@ -164,12 +156,13 @@ ssh root@[YOUR-SERVER-IP-ADDRESS]
 cd solectrus
 docker ps
 
-NAMES                            STATUS
-solectrus_app_1                  Up 31 seconds (healthy)
-solectrus_forecast-collector_1   Up 31 seconds
-solectrus_influxdb_1             Up 33 seconds
-solectrus_redis_1                Up 33 seconds
-solectrus_db_1                   Up 33 seconds
+
+IMAGE                                         STATUS
+ghcr.io/solectrus/solectrus:latest            Up 31 seconds (healthy) ...
+ghcr.io/solectrus/forecast-collector:latest   Up 31 seconds           ...
+influxdb:2.5-alpine                           Up 31 seconds           ...
+postgres:15-alpine                            Up 31 seconds           ...
+redis:7-alpine                                Up 31 seconds           ...
 ```
 
 ### j) Finish!
@@ -187,8 +180,8 @@ To update your installation to the latest release, run:
 ssh root@[YOUR-SERVER-IP-ADDRESS]
 cd solectrus
 
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose up -d
 ```
 
 ## STEP 2: Install SENEC Collector on a Raspberry Pi
