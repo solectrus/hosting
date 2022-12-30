@@ -1,4 +1,4 @@
-version: "3.7"
+version: '3.7'
 
 services:
   app:
@@ -12,7 +12,7 @@ services:
       - influxdb
       - redis
     ports:
-      - 80:3000
+      - 3000:3000
     environment:
       - APP_HOST
       - FORCE_SSL
@@ -30,11 +30,11 @@ services:
       - INFLUX_ORG
       - INFLUX_BUCKET
     healthcheck:
-      test: ["CMD-SHELL", "nc -z 127.0.0.1 3000 || exit 1"]
+      test: ['CMD-SHELL', 'nc -z 127.0.0.1 3000 || exit 1']
     restart: always
 
   influxdb:
-    image: influxdb:2.5-alpine
+    image: influxdb:2.6-alpine
     volumes:
       - ${INFLUX_VOLUME_PATH}:/var/lib/influxdb2
     environment:
@@ -45,8 +45,9 @@ services:
       - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUX_BUCKET}
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUX_ADMIN_TOKEN}
     command: influxd run --bolt-path /var/lib/influxdb2/influxd.bolt --engine-path /var/lib/influxdb2/engine --store disk
-    ports:
-      - 8086:8086
+    # Optional: Allow InfluxDB to be accessed from the outside. This is required to import data using senec-importer!
+    # ports:
+    #   - 8086:8086
     restart: always
 
   db:
@@ -61,6 +62,23 @@ services:
     image: redis:7-alpine
     volumes:
       - ${REDIS_VOLUME_PATH}:/data
+    restart: always
+
+  senec-collector:
+    image: ghcr.io/solectrus/senec-collector:latest
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+    environment:
+      - SENEC_HOST
+      - SENEC_INTERVAL
+      - INFLUX_HOST
+      - INFLUX_SCHEMA
+      - INFLUX_PORT
+      - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
+      - INFLUX_ORG
+      - INFLUX_BUCKET
     restart: always
 
   #renault-collector:

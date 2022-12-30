@@ -1,4 +1,4 @@
-version: "3.7"
+version: '3.7'
 
 services:
   app:
@@ -30,11 +30,11 @@ services:
       - INFLUX_ORG
       - INFLUX_BUCKET
     healthcheck:
-      test: ["CMD-SHELL", "nc -z 127.0.0.1 3000 || exit 1"]
+      test: ['CMD-SHELL', 'nc -z 127.0.0.1 3000 || exit 1']
     restart: always
 
   influxdb:
-    image: influxdb:2.5-alpine
+    image: influxdb:2.6-alpine
     volumes:
       - ${INFLUX_VOLUME_PATH}:/var/lib/influxdb2
     environment:

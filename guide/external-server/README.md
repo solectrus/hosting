@@ -55,7 +55,7 @@ mkdir redis postgresql influxdb
 Download the configuration file from the repository;
 
 ```console
-curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/step-by-step/external-server/.env" -o ~/solectrus/.env
+curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/guide/external-server/.env" -o ~/solectrus/.env
 ```
 
 Edit the downloaded file and change values to your needs.
@@ -64,7 +64,11 @@ Edit the downloaded file and change values to your needs.
 pico .env
 ```
 
-You should change at least the following values:
+IMPORTANT settings, MUST be changed:
+
+- APP_HOST # Host of your cloud server
+
+Not required, but highly recommended:
 
 - ADMIN_PASSWORD
 - INSTALLATION_DATE
@@ -82,11 +86,10 @@ WARNING: Don't forget to change passwords, because otherwise everyone can access
 
 Save file and close the editor: <kbd>Ctrl+S</kbd>, then <kbd>Ctrl+X</kbd>
 
-
 ### e) Download Docker compose file `./docker-compose.yml`
 
 ```console
-curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/step-by-step/external-server/docker-compose.yml" -o ~/solectrus/docker-compose.yml
+curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/guide/external-server/docker-compose.yml" -o ~/solectrus/docker-compose.yml
 ```
 
 ### f) Start Docker containers
@@ -101,8 +104,8 @@ This could take some minutes for the first run, because some images are download
 
 ```
 Creating network "solectrus_default" with the default driver
-Pulling influxdb (influxdb:2.5-alpine)...
-2.5-alpine: Pulling from library/influxdb
+Pulling influxdb (influxdb:2.6-alpine)...
+2.6-alpine: Pulling from library/influxdb
 .... lots of other lines here ....
 app_1     | Created database 'solectrus_production'
 app_1     | Database is ready!
@@ -124,7 +127,6 @@ Note:
 ### g) Open the app in your browser
 
 Open `http://[YOUR-SERVER-IP-ADDRESS]` in your browser. You should see the dashboard.
-
 
 ### h) Check login to InfluxDB
 
@@ -162,7 +164,7 @@ docker ps
 IMAGE                                         STATUS
 ghcr.io/solectrus/solectrus:latest            Up 31 seconds (healthy) ...
 ghcr.io/solectrus/forecast-collector:latest   Up 31 seconds           ...
-influxdb:2.5-alpine                           Up 31 seconds           ...
+influxdb:2.6-alpine                           Up 31 seconds           ...
 postgres:15-alpine                            Up 31 seconds           ...
 redis:7-alpine                                Up 31 seconds           ...
 ```
@@ -172,7 +174,6 @@ redis:7-alpine                                Up 31 seconds           ...
 You are done with step 1. Solectrus is now installed on your server and can be accessed from your browser.
 
 `http://[YOUR-SERVER-IP-ADDRESS]`
-
 
 ### h) Staying up to date
 
@@ -268,7 +269,6 @@ Check the arguments of your `docker run` command:
 - Did your Influx credentials given in `INFLUX_ORG`, `INFLUX_BUCKET` and `INFLUX_TOKEN` match your InfluxDB setup (see Step 1)?
 
 Change them until pulling and pushing works.
-
 
 ### c) Finish!
 

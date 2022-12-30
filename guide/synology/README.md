@@ -1,6 +1,6 @@
 # Install Solectrus on an in-house server
 
-This example demonstrates how to run **all** components of Solectrus on a single machine:
+This guide demonstrates how to run **all** components of Solectrus on a single machine:
 
 - Dashboard (the Solectrus UI)
 - InfluxDB (the database for storing the measurements)
@@ -10,7 +10,7 @@ This example demonstrates how to run **all** components of Solectrus on a single
 - Forecast-Collector (optional)
 - Renault-Collector (optional)
 
-This example is tested on a Synology NAS DS220+, but should work on any Linux system with `x86_64` architecture which can run Docker. A CPU with at least 2 cores is recommended, as well as a RAM upgrade to more than 2GB. A Linux Kernel v4 or higher is **required**, some older NAS devices don't work because they are on Kernel v3 and cannot be updated.
+This guide is tested on a Synology NAS DS220+, but should work on any Linux system with `x86_64` architecture which can run Docker. A CPU with at least 2 cores is recommended, as well as a RAM upgrade to more than 2GB. A Linux Kernel v4 or higher is **required**, some older NAS devices don't work because they are on Kernel v3 and cannot be updated.
 
 This machine connects to your SENEC device, so it should be placed in the same network.
 
@@ -41,7 +41,7 @@ mkdir redis postgresql influxdb
 Download the configuration file from the repository;
 
 ```console
-curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/step-by-step/in-house/.env" -o /volume1/docker/solectrus/.env
+curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/guide/synology/.env" -o /volume1/docker/solectrus/.env
 ```
 
 Edit the downloaded file and change values to your needs.
@@ -50,12 +50,18 @@ Edit the downloaded file and change values to your needs.
 vim .env
 ```
 
-IMPORTANT: At least you must change `SENEC_HOST` to the IP address of your SENEC device!
+IMPORTANT settings, MUST be changed:
 
-But there are other settings you should update to your needs:
+- SENEC_HOST # IP address of your SENEC device!
+- APP_HOST # Host of your Raspberry Pi
+
+Not required, but highly recommended:
+
 - ADMIN_PASSWORD
 - INSTALLATION_DATE
 - ELECTRICITY_PRICE
+- INFLUX_PASSWORD
+- INFLUX_ADMIN_TOKEN
 - FEED_IN_TARIFF
 - FORECAST_LATITUDE
 - FORECAST_LONGITUDE
@@ -65,11 +71,10 @@ But there are other settings you should update to your needs:
 
 Note: Editing the file with `vim` is just an example, because this is the pre-installed editor. You can use any editor you like. If you are not familiar with `vim`, you can use [TextEditor](https://www.synology.com/dsm/packages/TextEditor) by Synology which can be installed as package via DSM.
 
-
 4. Download Docker compose file `./docker-compose.yml`
 
 ```console
-curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/step-by-step/in-house/docker-compose.yml" -o /volume1/docker/solectrus/docker-compose.yml
+curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/guide/synology/docker-compose.yml" -o /volume1/docker/solectrus/docker-compose.yml
 ```
 
 5. Start Docker containers
@@ -97,7 +102,6 @@ app_1     | Use Ctrl-C to stop
 6. Open the app in your browser
 
 `http://[YOUR-SERVER-IP-ADDRESS]:3000`
-
 
 7. Run services in the background
 
