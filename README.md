@@ -1,6 +1,6 @@
-# Solectrus Hosting Guide
+# SOLECTRUS Hosting Guide
 
-There are different ways to install **Solectrus**:
+There are different ways to install **SOLECTRUS**:
 
 1. [Local installation on Synology NAS](/guide/synology)
 

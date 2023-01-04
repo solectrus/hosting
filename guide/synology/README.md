@@ -1,8 +1,8 @@
-# Install Solectrus on an in-house server
+# Install SOLECTRUS on an in-house server
 
-This guide demonstrates how to run **all** components of Solectrus on a single machine:
+This guide demonstrates how to run **all** components of SOLECTRUS on a single machine:
 
-- Dashboard (the Solectrus UI)
+- Dashboard (the SOLECTRUS UI)
 - InfluxDB (the database for storing the measurements)
 - Redis (for some caching)
 - PostgreSQL (the SQL database for storing settings like historical prices)

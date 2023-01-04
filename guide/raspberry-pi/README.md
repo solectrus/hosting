@@ -1,8 +1,8 @@
-# Install Solectrus on a Raspberry Pi
+# Install SOLECTRUS on a Raspberry Pi
 
-This guide demonstrates how to run **all** components of Solectrus on a Raspberry Pi with ARM64 architecture:
+This guide demonstrates how to run **all** components of SOLECTRUS on a Raspberry Pi with ARM64 architecture:
 
-- Dashboard (the Solectrus UI)
+- Dashboard (the SOLECTRUS UI)
 - InfluxDB (the database for storing the measurements)
 - Redis (for some caching)
 - PostgreSQL (the SQL database for storing settings like historical prices)

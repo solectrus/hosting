@@ -1,8 +1,8 @@
 # Distributed installation on Raspberry Pi pushing to a remote server
 
-This guides demonstrates how to set up a Solectrus instance on a remote server (STEP 1) and install the SENEC Collector on your local Raspberry Pi (STEP 2).
+This guides demonstrates how to set up a SOLECTRUS instance on a remote server (STEP 1) and install the SENEC Collector on your local Raspberry Pi (STEP 2).
 
-## STEP 1: Install Solectrus on a remote server
+## STEP 1: Install SOLECTRUS on a remote server
 
 ### a) Order your server at Hetzner
 
@@ -13,7 +13,7 @@ https://hetzner.cloud/?ref=NggV8HU9FqCz
 Order your server:
 
 - Go to https://console.hetzner.cloud/projects
-- Select "New project", name it "Solectrus", open the project
+- Select "New project", name it "SOLECTRUS", open the project
 - Select "Add server"
 - Location: Select a location near you
 - Image: Select "Apps", then "Docker CE"
@@ -171,7 +171,7 @@ redis:7-alpine                                Up 31 seconds           ...
 
 ### j) Finish!
 
-You are done with step 1. Solectrus is now installed on your server and can be accessed from your browser.
+You are done with step 1. SOLECTRUS is now installed on your server and can be accessed from your browser.
 
 `http://[YOUR-SERVER-IP-ADDRESS]`
 
@@ -272,6 +272,6 @@ Change them until pulling and pushing works.
 
 ### c) Finish!
 
-You are done. You should see the measurements from your SENEC device in your Solectrus instance:
+You are done. You should see the measurements from your SENEC device in your SOLECTRUS instance:
 
 `http://[YOUR-SERVER-IP-ADDRESS]`
