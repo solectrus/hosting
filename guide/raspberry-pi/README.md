@@ -71,8 +71,8 @@ nano .env
 
 IMPORTANT settings, MUST be changed:
 
-- SENEC_HOST # IP address of your SENEC device!
-- APP_HOST # Host of your Raspberry Pi
+- SENEC_HOST # Hostname or IP address of your SENEC device
+- APP_HOST # Hostname or IP address of your Raspberry Pi
 
 Not required, but highly recommended:
 

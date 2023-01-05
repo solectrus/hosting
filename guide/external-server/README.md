@@ -66,7 +66,7 @@ pico .env
 
 IMPORTANT settings, MUST be changed:
 
-- APP_HOST # Host of your cloud server
+- APP_HOST # Hostname or IP address of your cloud server
 
 Not required, but highly recommended:
 
