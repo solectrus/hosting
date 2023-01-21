@@ -93,7 +93,7 @@ Note: Editing the file with `nano` is just an example, because this editor is pr
 4. Download Docker compose file `./docker-compose.yml`
 
 ```console
-curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/guide/raspberry-pie/docker-compose.yml" -o /home/pi/solectrus/docker-compose.yml
+curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/guide/raspberry-pi/docker-compose.yml" -o /home/pi/solectrus/docker-compose.yml
 ```
 
 5. Start Docker containers
