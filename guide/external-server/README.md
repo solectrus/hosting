@@ -187,6 +187,8 @@ docker compose pull
 docker compose up -d
 ```
 
+To automate installing updates, you can use [Watchtower](https://containrrr.dev/watchtower/), which is a free tool to automatically update running Docker containers.
+
 ## STEP 2: Install SENEC Collector on a Raspberry Pi
 
 ### a) Prepare Raspberry Pi
