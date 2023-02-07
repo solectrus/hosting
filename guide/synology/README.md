@@ -90,7 +90,7 @@ This could take some minutes for the first run. You see some output like this:
 app_1     | Created database 'solectrus_production'
 app_1     | Database is ready!
 app_1     | Puma starting in single mode...
-app_1     | * Puma version: 5.6.5 (ruby 3.1.2-p20) ("Birdie's Version")
+app_1     | * Puma version: 6.0.2 (ruby 3.2.0-p0) ("Sunflower")
 app_1     | *  Min threads: 5
 app_1     | *  Max threads: 5
 app_1     | *  Environment: production

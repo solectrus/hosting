@@ -20,7 +20,7 @@ Check your OS version:
 
 ```console
 $ uname -a
-Linux raspberrypi 5.15.76-v8+ #1597 SMP PREEMPT Fri Nov 4 12:16:41 GMT 2022 aarch64 GNU/Linux
+Linux raspberrypi 5.15.84-v8+ #1613 SMP PREEMPT Thu Jan 5 12:03:08 GMT 2023 aarch64 GNU/Linux
 ```
 
 The important part is `aarch64` which means you are running a 64bit OS. If you are running a 32bit OS, you need to upgrade.
@@ -34,10 +34,10 @@ Check your Docker version:
 
 ```console
 $ docker --version
-Docker version 20.10.22, build 3a2c30b
+Docker version 23.0.0, build e92dd87
 
 $ docker compose version
-Docker Compose version v2.14.1
+Docker Compose version v2.15.1
 ```
 
 If you don't have Docker installed, follow the instructions here:
@@ -109,7 +109,7 @@ This could take some minutes for the first run. You see some output like this:
 app_1     | Created database 'solectrus_production'
 app_1     | Database is ready!
 app_1     | Puma starting in single mode...
-app_1     | * Puma version: 6.0.1 (ruby 3.1.3-p185) ("Sunflower")
+app_1     | * Puma version: 6.0.2 (ruby 3.2.0-p0) ("Sunflower")
 app_1     | *  Min threads: 5
 app_1     | *  Max threads: 5
 app_1     | *  Environment: production

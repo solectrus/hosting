@@ -37,7 +37,10 @@ Check if `Docker` is installed and running:
 
 ```console
 docker -v
-Docker version 20.10.21, build baeda1f
+Docker version 23.0.0, build e92dd87
+
+docker compose -v
+Docker version 23.0.0, build e92dd87
 ```
 
 Nice, `Docker` is preinstalled.
@@ -110,7 +113,7 @@ Pulling influxdb (influxdb:2.6-alpine)...
 app_1     | Created database 'solectrus_production'
 app_1     | Database is ready!
 app_1     | Puma starting in single mode...
-app_1     | * Puma version: 5.6.5 (ruby 3.1.3-p185) ("Birdie's Version")
+app_1     | * Puma version: 6.0.2 (ruby 3.2.0-p0) ("Sunflower")
 app_1     | *  Min threads: 5
 app_1     | *  Max threads: 5
 app_1     | *  Environment: production
@@ -198,7 +201,7 @@ Login to you Raspi and ensure that Docker is installed:
 ```console
 ssh pi@raspberrypi.local
 docker -v
-Docker version 20.10.12, build e91ed57
+Docker version 23.0.0, build e92dd87
 ```
 
 If Docker is not installed, install it:
@@ -242,16 +245,18 @@ docker logs -f senec-collector
 If it works, you should see this:
 
 ```
-SENEC collector for SOLECTRUS
+SENEC collector for SOLECTRUS, Version 0.6.0, built at 2023-02-05T11:44:03.299Z
 https://github.com/solectrus/senec-collector
-Copyright (c) 2020,2022 Georg Ledermann, released under the MIT License
+Copyright (c) 2020,2023 Georg Ledermann, released under the MIT License
+Using Ruby 3.2.0 on platform x86_64-linux-musl
 
-Using Ruby 3.1.2 on platform arm-linux-musleabihf
 Pulling from SENEC at [YOUR-SENEC-IP-ADDRESS] every 5 seconds
 Pushing to InfluxDB at http://[YOUR-SERVER-IP-ADDRESS]:8086, bucket my-solectrus-bucket
 
+Getting state names from [YOUR-SENEC-IP-ADDRESS] by parsing source code...
+OK, got 99 state names
 
-Got record #1 from SENEC: Inverter 4127 W, House 0 W, 2022-02-13 12:06:54 +0000
+Got record #1 from SENEC at [YOUR-SENEC-IP-ADDRESS]: AKKU LEER, Inverter 274 W, House 466 W, 2023-02-07 07:43:53 +0000
 Successfully pushed record to InfluxDB
 ```
 
