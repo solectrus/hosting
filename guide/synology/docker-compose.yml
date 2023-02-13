@@ -81,26 +81,6 @@ services:
       - INFLUX_BUCKET
     restart: always
 
-  #renault-collector:
-  #  image: ghcr.io/solectrus/renault-collector:latest
-  #  links:
-  #    - influxdb
-  #  depends_on:
-  #    - influxdb
-  #  environment:
-  #    - RENAULT_EMAIL
-  #    - RENAULT_PASSWORD
-  #    - RENAULT_INTERVAL
-  #    - RENAULT_MODEL
-  #    - GIGYA_API_KEY
-  #    - KAMEREON_API_KEY
-  #    - INFLUX_HOST
-  #    - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
-  #    - INFLUX_ORG
-  #    - INFLUX_BUCKET
-  #  command: bundle exec app/main.rb
-  #  restart: always
-
   forecast-collector:
     image: ghcr.io/solectrus/forecast-collector:latest
     depends_on:

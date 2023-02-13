@@ -8,7 +8,6 @@ This guide demonstrates how to run **all** components of SOLECTRUS on a Raspberr
 - PostgreSQL (the SQL database for storing settings like historical prices)
 - SENEC Collector (pulling measurements from SENEC devise and pushing them the InfluxDB)
 - Forecast-Collector (optional)
-- Renault-Collector (optional)
 
 This guide is tested on a Raspberry Pi Model 4 with 8GB RAM using Raspberry Pi OS Lite (Debian Bullseye, 64bit). A Linux Kernel v4 or higher is **required**.
 

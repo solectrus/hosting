@@ -8,7 +8,6 @@ This guide demonstrates how to run **all** components of SOLECTRUS on a single m
 - PostgreSQL (the SQL database for storing settings like historical prices)
 - SENEC Collector (pulling measurements from SENEC devise and pushing them the InfluxDB)
 - Forecast-Collector (optional)
-- Renault-Collector (optional)
 
 This guide is tested on a Synology NAS DS220+, but should work on any Linux system with `x86_64` architecture which can run Docker. A CPU with at least 2 cores is recommended, as well as a RAM upgrade to more than 2GB. A Linux Kernel v4 or higher is **required**, some older NAS devices don't work because they are on Kernel v3 and cannot be updated.
 
