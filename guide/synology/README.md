@@ -23,6 +23,16 @@ docker-compose -v
 docker-compose version 1.28.5, build 24fb474e
 ```
 
+To ensure Docker can run without `sudo`, create a `docker` group and add your user to it:
+
+```console
+sudo synogroup --add docker
+sudo chown root:docker /var/run/docker.sock
+sudo synogroup --member docker $USER
+```
+
+(adopted from https://docs.docker.com/engine/install/linux-postinstall/)
+
 2. Create folders for configuration and Docker volumes:
 
 On a Synology NAS, there is a `/volume1/docker` folder which is used for Docker volumes. This may be different on your machine.
