@@ -156,7 +156,11 @@ solectrus_redis_1                Up 33 seconds
 solectrus_db_1                   Up 33 seconds
 ```
 
-8. Staying up to date
+8. Optional: Import historical data
+
+On [mein-senec.de](https://mein-senec.de) you find download links for your historical data. Download the CSV files and import them into SOLECTRUS. See [SENEC-Importer](https://github.com/solectrus/senec-importer) for more information.
+
+9. Staying up to date
 
 To update your installation to the latest release, run:
 
