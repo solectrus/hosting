@@ -19,7 +19,7 @@ Check your OS version:
 
 ```console
 $ uname -a
-Linux raspberrypi 5.15.84-v8+ #1613 SMP PREEMPT Thu Jan 5 12:03:08 GMT 2023 aarch64 GNU/Linux
+Linux raspberrypi 6.1.21-v8+ #1642 SMP PREEMPT Mon Apr  3 17:24:16 BST 2023 aarch64 GNU/Linux
 ```
 
 The important part is `aarch64` which means you are running a 64bit OS. If you are running a 32bit OS, you need to upgrade.
