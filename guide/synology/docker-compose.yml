@@ -4,9 +4,12 @@ services:
   app:
     image: ghcr.io/solectrus/solectrus:latest
     depends_on:
-      - db
-      - influxdb
-      - redis
+      db:
+        condition: service_healthy
+      influxdb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     links:
       - db
       - influxdb
@@ -49,6 +52,12 @@ services:
     # ports:
     #   - 8086:8086
     restart: always
+    healthcheck:
+      test: ['CMD', 'influx', 'ping']
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
 
   db:
     image: postgres:15-alpine
@@ -57,17 +66,30 @@ services:
     volumes:
       - ${DB_VOLUME_PATH}:/var/lib/postgresql/data
     restart: always
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 20s
+      retries: 5
+      start_period: 60s
 
   redis:
     image: redis:7-alpine
     volumes:
       - ${REDIS_VOLUME_PATH}:/data
     restart: always
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 20s
+      retries: 5
+      start_period: 60s
 
   senec-collector:
     image: ghcr.io/solectrus/senec-collector:latest
     depends_on:
-      - influxdb
+      influxdb:
+        condition: service_healthy
     links:
       - influxdb
     environment:
@@ -84,7 +106,8 @@ services:
   forecast-collector:
     image: ghcr.io/solectrus/forecast-collector:latest
     depends_on:
-      - influxdb
+      influxdb:
+        condition: service_healthy
     links:
       - influxdb
     environment:

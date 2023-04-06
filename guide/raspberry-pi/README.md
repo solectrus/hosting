@@ -104,17 +104,41 @@ docker compose up
 This could take some minutes for the first run. You see some output like this:
 
 ```
-.... lots of other lines here ....
-app_1     | Created database 'solectrus_production'
-app_1     | Database is ready!
-app_1     | Puma starting in single mode...
-app_1     | * Puma version: 6.0.2 (ruby 3.2.0-p0) ("Sunflower")
-app_1     | *  Min threads: 5
-app_1     | *  Max threads: 5
-app_1     | *  Environment: production
-app_1     | *          PID: 76
-app_1     | * Listening on http://0.0.0.0:3000
-app_1     | Use Ctrl-C to stop
+✔ Network solectrus_default                 Created
+✔ Container solectrus-db-1                  Created
+✔ Container solectrus-influxdb-1            Created
+✔ Container solectrus-redis-1               Created
+✔ Container solectrus-app-1                 Created
+✔ Container solectrus-forecast-collector-1  Created
+✔ Container solectrus-senec-collector-1     Created
+Attaching to solectrus-app-1, solectrus-db-1, solectrus-forecast-collector-1, solectrus-influxdb-1, solectrus-redis-1, solectrus-senec-collector-1
+....
+solectrus-app-1                 | Starting SOLECTRUS...
+solectrus-app-1                 | Version: v0.10.0 - 2023-04-01T17:08:24+02:00
+solectrus-app-1                 | ----------------
+solectrus-app-1                 | influxdb (172.18.0.3:8086) open
+solectrus-app-1                 | InfluxDB is up and running!
+solectrus-app-1                 | db (172.18.0.4:5432) open
+solectrus-app-1                 | PostgreSQL is up and running!
+solectrus-app-1                 | Preparing database...
+....
+solectrus-app-1                 | Created database 'solectrus_production'
+solectrus-app-1                 | Database is ready!
+solectrus-app-1                 | Puma starting in single mode...
+solectrus-app-1                 | * Puma version: 6.2.1 (ruby 3.2.2-p53) ("Speaking of Now")
+solectrus-app-1                 | *  Min threads: 5
+solectrus-app-1                 | *  Max threads: 5
+solectrus-app-1                 | *  Environment: production
+solectrus-app-1                 | *          PID: 11
+solectrus-app-1                 | * Listening on http://0.0.0.0:3001
+solectrus-app-1                 | Use Ctrl-C to stop
+....
+solectrus-senec-collector-1     |
+solectrus-senec-collector-1     | Got record #1 from SENEC at 192.168.178.29: AKKU VOLL, Inverter 757 W, House 492 W, 2023-04-06 14:25:16 +0000
+solectrus-senec-collector-1     | Successfully pushed record #1 to InfluxDB
+solectrus-senec-collector-1     |
+solectrus-senec-collector-1     | Got record #2 from SENEC at 192.168.178.29: AKKU VOLL, Inverter 753 W, House 503 W, 2023-04-06 14:25:21 +0000
+solectrus-senec-collector-1     | Successfully pushed record #2 to InfluxDB
 ```
 
 6. Open the app in your browser

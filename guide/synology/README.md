@@ -95,17 +95,42 @@ docker-compose up
 This could take some minutes for the first run. You see some output like this:
 
 ```
-.... lots of other lines here ....
-app_1     | Created database 'solectrus_production'
-app_1     | Database is ready!
-app_1     | Puma starting in single mode...
-app_1     | * Puma version: 6.0.2 (ruby 3.2.0-p0) ("Sunflower")
-app_1     | *  Min threads: 5
-app_1     | *  Max threads: 5
-app_1     | *  Environment: production
-app_1     | *          PID: 76
-app_1     | * Listening on http://0.0.0.0:3000
-app_1     | Use Ctrl-C to stop
+Creating network "dashboard_default" with the default driver
+Creating dashboard_db_1       ... done
+Creating dashboard_influxdb_1 ... done
+Creating dashboard_redis_1    ... done
+..... [Pausing here to wait for the databases to be created] .....
+Creating dashboard_forecast-collector_1 ... done
+Creating dashboard_senec-collector_1    ... done
+Creating dashboard_app_1                ... done
+Attaching to dashboard_db_1, dashboard_redis_1, dashboard_influxdb_1, dashboard_forecast-collector_1, dashboard_senec-collector_1, dashboard_app_1
+app_1                 | Starting SOLECTRUS...
+app_1                 | Version: v0.10.0 - 2023-04-01T17:08:24+02:00
+app_1                 | ----------------
+app_1                 | influxdb (172.24.0.4:8086) open
+app_1                 | InfluxDB is up and running!
+app_1                 | db (172.24.0.2:5432) open
+app_1                 | PostgreSQL is up and running!
+app_1                 | Preparing database...
+.....
+app_1                 | Created database 'solectrus_production'
+app_1                 | Database is ready!
+app_1                 | Puma starting in single mode...
+app_1                 | * Puma version: 6.2.1 (ruby 3.2.2-p53) ("Speaking of Now")
+app_1                 | *  Min threads: 5
+app_1                 | *  Max threads: 5
+app_1                 | *  Environment: production
+app_1                 | *          PID: 11
+app-1                 | * Listening on http://0.0.0.0:3001
+app-1                 | Use Ctrl-C to stop
+.....
+senec-collector_1     |
+senec-collector_1     | Got record #1 from SENEC at 192.168.178.123: PV + ENTLADEN, Inverter 1169 W, House 2518 W, 2023-04-06 13:36:57 +0000
+senec-collector_1     | Successfully pushed record #1 to InfluxDB
+senec-collector_1     |
+senec-collector_1     | Got record #2 from SENEC at 192.168.178.123: PV + ENTLADEN, Inverter 1164 W, House 2509 W, 2023-04-06 13:37:02 +0000
+senec-collector_1     | Successfully pushed record #2 to InfluxDB
+senec-collector_1     |
 ```
 
 6. Open the app in your browser
