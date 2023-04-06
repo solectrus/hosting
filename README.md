@@ -14,4 +14,4 @@ There are different ways to install **SOLECTRUS**:
 
    You need a Raspberry Pi at home **and** a remote server somewhere on the internet (tested with Hetzner Cloud)
 
-Of course, you also need a SENEC device connected to your LAN (tested with a SENEC Home V3 hybrid).
+Of course, you also need a SENEC device connected to your LAN (tested with a SENEC Home V3 hybrid duo).
