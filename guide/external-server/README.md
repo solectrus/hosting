@@ -37,10 +37,10 @@ Check if `Docker` is installed and running:
 
 ```console
 docker -v
-Docker version 23.0.0, build e92dd87
+Docker version 23.0.3, build 3e7cbfd
 
-docker compose -v
-Docker version 23.0.0, build e92dd87
+docker compose version
+Docker Compose version v2.17.2
 ```
 
 Nice, `Docker` is preinstalled.
