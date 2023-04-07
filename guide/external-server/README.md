@@ -249,10 +249,10 @@ docker logs -f senec-collector
 If it works, you should see this:
 
 ```
-SENEC collector for SOLECTRUS, Version 0.6.0, built at 2023-02-05T11:44:03.299Z
+SENEC collector for SOLECTRUS, Version 0.7.0, built at 2023-03-23T14:54:51.458Z
 https://github.com/solectrus/senec-collector
 Copyright (c) 2020,2023 Georg Ledermann, released under the MIT License
-Using Ruby 3.2.0 on platform x86_64-linux-musl
+Using Ruby 3.2.1 on platform x86_64-linux-musl
 
 Pulling from SENEC at [YOUR-SENEC-IP-ADDRESS] every 5 seconds
 Pushing to InfluxDB at http://[YOUR-SERVER-IP-ADDRESS]:8086, bucket my-solectrus-bucket
@@ -260,8 +260,8 @@ Pushing to InfluxDB at http://[YOUR-SERVER-IP-ADDRESS]:8086, bucket my-solectrus
 Getting state names from [YOUR-SENEC-IP-ADDRESS] by parsing source code...
 OK, got 99 state names
 
-Got record #1 from SENEC at [YOUR-SENEC-IP-ADDRESS]: AKKU LEER, Inverter 274 W, House 466 W, 2023-02-07 07:43:53 +0000
-Successfully pushed record to InfluxDB
+Got record #1 from SENEC at [YOUR-SENEC-IP-ADDRESS]: LADEN, Inverter 307 W, House 337 W, 2023-04-07 06:59:47 +0000
+Successfully pushed record #1 to InfluxDB
 ```
 
 Great! Since the container runs in the background, it is automatically restarted at every reboot.
