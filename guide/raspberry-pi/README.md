@@ -172,12 +172,13 @@ ssh pi@[YOUR-RASPI-IP-ADDRESS]
 cd solectrus
 docker ps
 
-NAMES                            STATUS
-solectrus_app_1                  Up 31 seconds (healthy)
-solectrus_forecast-collector_1   Up 31 seconds
-solectrus_influxdb_1             Up 33 seconds
-solectrus_redis_1                Up 33 seconds
-solectrus_db_1                   Up 33 seconds
+IMAGE                                         STAT1US                  NAMES
+ghcr.io/solectrus/solectrus:latest            Up 31 second (healthy)   solectrus-app-1
+ghcr.io/solectrus/forecast-collector:latest   Up 31 second             solectrus-forecast-collector-1
+ghcr.io/solectrus/senec-collector:latest      Up 31 second             solectrus-senec-collector-1
+influxdb:2.7-alpine                           Up 31 second (healthy)   solectrus-influxdb-1
+redis:7-alpine                                Up 31 second (healthy)   solectrus-redis-1
+postgres:15-alpine                            Up 31 second (healthy)   solectrus-db-1
 ```
 
 8. Optional: Import historical data
