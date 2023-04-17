@@ -13,18 +13,23 @@ This guide is tested on a Raspberry Pi Model 4 with 8GB RAM using Raspberry Pi O
 
 This machine connects to your SENEC device, so it should be placed in the same network.
 
-0. Ensure you have Pi OS 64bit
+0. Ensure you have Pi OS 64bit with Kernel v4 or higher
 
-Check your OS version:
+Check your OS and architecture, which should look like this:
 
 ```console
 $ uname -a
 Linux raspberrypi 6.1.21-v8+ #1642 SMP PREEMPT Mon Apr  3 17:24:16 BST 2023 aarch64 GNU/Linux
+
+$ dpkg --print-architecture
+arm64
 ```
 
-The important part is `aarch64` which means you are running a 64bit OS. If you are running a 32bit OS, you need to upgrade.
+The kernel is v6, which is the latest and greatest - v4 or v5 will work as well.
 
-The easiest way to upgrade is to use the Raspberry Pi Imager to install Raspberry Pi OS Lite (Debian Bullseye, 64bit) on a SD card:
+The architecture is `arm64` which means you are running a 64bit OS. If you are running a 32bit OS, you need to upgrade. If the architecture is `armhf`, you are running a 64bit Kernel with 32bit userland, which will **not** work.
+
+The easiest way to setup a brand new OS is to use the Raspberry Pi Imager to install Raspberry Pi OS Lite (Debian Bullseye, 64bit) on a SD card:
 https://www.raspberrypi.com/software/
 
 1. Ensure Docker is installed and running.
