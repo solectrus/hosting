@@ -47,6 +47,18 @@ Docker Compose version v2.17.2
 If you don't have Docker installed, follow the instructions here:
 https://docs.docker.com/engine/install/debian/
 
+Don't forget to add your user to the `docker` group, so you don't need to use `sudo` for every Docker command.
+
+```console
+sudo groupadd docker
+sudo usermod -aG docker $USER
+```
+
+Log out and log back in so that your group membership is re-evaluated.
+
+Details:
+https://docs.docker.com/engine/install/linux-postinstall/
+
 2. Create folders for configuration and Docker volumes:
 
 Choose a folder where you want to store the configuration and Docker volumes. This guide assumes you have a folder `/home/pi/solectrus` which is used for Docker volumes.
