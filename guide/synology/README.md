@@ -105,7 +105,7 @@ Creating dashboard_senec-collector_1    ... done
 Creating dashboard_app_1                ... done
 Attaching to dashboard_db_1, dashboard_redis_1, dashboard_influxdb_1, dashboard_forecast-collector_1, dashboard_senec-collector_1, dashboard_app_1
 app_1                 | Starting SOLECTRUS...
-app_1                 | Version: v0.10.0 - 2023-04-01T17:08:24+02:00
+app_1                 | Version: v0.10.1 - 2023-05-06T09:46:43+02:00
 app_1                 | ----------------
 app_1                 | influxdb (172.24.0.4:8086) open
 app_1                 | InfluxDB is up and running!
@@ -116,7 +116,7 @@ app_1                 | Preparing database...
 app_1                 | Created database 'solectrus_production'
 app_1                 | Database is ready!
 app_1                 | Puma starting in single mode...
-app_1                 | * Puma version: 6.2.1 (ruby 3.2.2-p53) ("Speaking of Now")
+app_1                 | * Puma version: 6.2.2 (ruby 3.2.2-p53) ("Speaking of Now")
 app_1                 | *  Min threads: 5
 app_1                 | *  Max threads: 5
 app_1                 | *  Environment: production

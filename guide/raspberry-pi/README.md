@@ -131,7 +131,7 @@ This could take some minutes for the first run. You see some output like this:
 Attaching to solectrus-app-1, solectrus-db-1, solectrus-forecast-collector-1, solectrus-influxdb-1, solectrus-redis-1, solectrus-senec-collector-1
 ....
 solectrus-app-1                 | Starting SOLECTRUS...
-solectrus-app-1                 | Version: v0.10.0 - 2023-04-01T17:08:24+02:00
+solectrus-app-1                 | Version: v0.10.1 - 2023-05-06T09:46:43+02:00
 solectrus-app-1                 | ----------------
 solectrus-app-1                 | influxdb (172.18.0.3:8086) open
 solectrus-app-1                 | InfluxDB is up and running!
@@ -142,7 +142,7 @@ solectrus-app-1                 | Preparing database...
 solectrus-app-1                 | Created database 'solectrus_production'
 solectrus-app-1                 | Database is ready!
 solectrus-app-1                 | Puma starting in single mode...
-solectrus-app-1                 | * Puma version: 6.2.1 (ruby 3.2.2-p53) ("Speaking of Now")
+solectrus-app-1                 | * Puma version: 6.2.2 (ruby 3.2.2-p53) ("Speaking of Now")
 solectrus-app-1                 | *  Min threads: 5
 solectrus-app-1                 | *  Max threads: 5
 solectrus-app-1                 | *  Environment: production

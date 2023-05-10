@@ -116,7 +116,7 @@ This could take some minutes for the first run, because some images are download
 Attaching to solectrus-app-1, solectrus-db-1, solectrus-forecast-collector-1, solectrus-influxdb-1, solectrus-redis-1
 ....
 solectrus-app-1                 | Starting SOLECTRUS...
-solectrus-app-1                 | Version: v0.10.0 - 2023-04-01T17:08:24+02:00
+solectrus-app-1                 | Version: v0.10.1 - 2023-05-06T09:46:43+02:00
 solectrus-app-1                 | ----------------
 solectrus-app-1                 | InfluxDB is up and running!
 solectrus-app-1                 | influxdb (172.18.0.2:8086) open
@@ -127,7 +127,7 @@ solectrus-app-1                 | db (172.18.0.3:5432) open
 solectrus-app-1                 | Created database 'solectrus_production'
 solectrus-app-1                 | Database is ready!
 solectrus-app-1                 | Puma starting in single mode...
-solectrus-app-1                 | * Puma version: 6.2.1 (ruby 3.2.2-p53) ("Speaking of Now")
+solectrus-app-1                 | * Puma version: 6.2.2 (ruby 3.2.2-p53) ("Speaking of Now")
 solectrus-app-1                 | *  Min threads: 5
 solectrus-app-1                 | *  Max threads: 5
 solectrus-app-1                 | *  Environment: production
@@ -263,10 +263,10 @@ docker logs -f senec-collector
 If it works, you should see this:
 
 ```
-SENEC collector for SOLECTRUS, Version 0.7.0, built at 2023-03-23T14:54:51.458Z
+SENEC collector for SOLECTRUS, Version 0.7.1, built at 2023-05-04T10:07:21.945Z
 https://github.com/solectrus/senec-collector
 Copyright (c) 2020,2023 Georg Ledermann, released under the MIT License
-Using Ruby 3.2.1 on platform x86_64-linux-musl
+Using Ruby 3.2.2 on platform aarch64-linux-musl
 
 Pulling from SENEC at [YOUR-SENEC-IP-ADDRESS] every 5 seconds
 Pushing to InfluxDB at http://[YOUR-SERVER-IP-ADDRESS]:8086, bucket my-solectrus-bucket
