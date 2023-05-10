@@ -23,6 +23,8 @@ docker-compose -v
 docker-compose version 1.28.5, build 24fb474e
 ```
 
+Note: The Docker package on the Synology NAS is a bit outdated, but it works well with SOLECTRUS. The compose utility is still v1 and is therefore invoked with `docker-compose` (instead of `docker compose`)
+
 To ensure Docker can run without `sudo`, create a `docker` group and add your user to it:
 
 ```console
