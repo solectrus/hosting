@@ -9,21 +9,27 @@ This guide demonstrates how to run **all** components of SOLECTRUS on a single m
 - SENEC Collector (pulling measurements from SENEC devise and pushing them the InfluxDB)
 - Forecast-Collector (optional)
 
-This guide is tested on a Synology NAS DS220+, but should work on any Linux system with `x86_64` architecture which can run Docker. A CPU with at least 2 cores is recommended, as well as a RAM upgrade to more than 2GB. A Linux Kernel v4 or higher is **required**, some older NAS devices don't work because they are on Kernel v3 and cannot be updated.
+This guide is tested on a Synology NAS DS220+, but should work on any Linux system with `x86_64` or `Arm64` architecture which can run Docker. A CPU with at least 2 cores is recommended, as well as a RAM upgrade to more than 2GB. A Linux Kernel v4 or higher is **required**, some older NAS devices don't work because they are on Kernel v3 and cannot be updated.
 
 This machine connects to your SENEC device, so it should be placed in the same network.
 
-1. Ensure Docker and Docker Compose is installed and running. Docker 18.06.0 or later is required.
+1. Ensure Docker is installed and running. Docker 18.06.0 or later is required. To install Docker, you can choose the `Docker` package from the Synology Package Center.
+
+Login via SSH and check the version:
 
 ```console
 docker --version
 Docker version 20.10.3, build 55f0773
+```
 
+Docker Compose is required as well. It is usually installed with Docker, but you can check the version:
+
+```console
 docker-compose -v
 docker-compose version 1.28.5, build 24fb474e
 ```
 
-Note: The Docker package on the Synology NAS is a bit outdated, but it works well with SOLECTRUS. The compose utility is still v1 and is therefore invoked with `docker-compose` (instead of `docker compose`)
+Note: The Docker package offered by Synology is a bit outdated, but it works well with SOLECTRUS. The compose utility is still v1 and is therefore invoked with `docker-compose` (instead of `docker compose` in v2).
 
 To ensure Docker can run without `sudo`, create a `docker` group and add your user to it:
 
