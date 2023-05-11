@@ -17,9 +17,9 @@ Order your server:
 - Select "Add server"
 - Location: Select a location near you
 - Image: Select "Apps", then "Docker CE"
-- Type: The smallest machine is enough, so select "CX11"
+- Type: The smallest machine is enough, so select "CX11" (x86) or "CAX11" (Arm64)
 - SSH-Key: If you already have an SSH key, you can add it here to avoid struggling with SSH password. Otherwise, leave it blank.
-- Order (for €4,51 per month)
+- Order (for less than 5€ per month)
 
 ### b) First Login
 
