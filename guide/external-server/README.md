@@ -138,7 +138,7 @@ solectrus-app-1                 | Use Ctrl-C to stop
 
 Note:
 
-- Port `3000` (Dashboard UI) is mapped to 80, so you can access it directly from your browser
+- Port `3000` (Dashboard UI) is mapped to 80, so you can access it from your browser without specifying the port
 - Port `8086` (InfluxDB) is exposed to the outside, so it can be reached by the Raspberry (see Step 2)
 
 ### g) Open the app in your browser
@@ -157,9 +157,9 @@ Stop services by pressing <kbd>Ctrl+C</kbd>. Then start again as daemon:
 
 ```console
 docker compose up -d
-Starting solectrus_redis_1    ... done
-Starting solectrus_db_1       ... done
-Starting solectrus_influxdb_1 ... done
+Starting solectrus_redis_1              ... done
+Starting solectrus_db_1                 ... done
+Starting solectrus_influxdb_1           ... done
 Starting solectrus_forecast-collector_1 ... done
 Starting solectrus_app_1                ... done
 ```
