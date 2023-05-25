@@ -173,6 +173,7 @@ Starting solectrus_redis_1    ... done
 Starting solectrus_db_1       ... done
 Starting solectrus_influxdb_1 ... done
 Starting solectrus_forecast-collector_1 ... done
+Starting solectrus_senec-collector_1    ... done
 Starting solectrus_app_1                ... done
 ```
 
