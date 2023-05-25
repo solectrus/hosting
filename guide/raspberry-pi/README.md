@@ -38,10 +38,10 @@ Check your Docker version:
 
 ```console
 $ docker --version
-Docker version 23.0.6, build ef23cbc
+Docker version 24.0.1, build 6802122
 
 $ docker compose version
-Docker Compose version v2.17.3
+Docker Compose version v2.18.1
 ```
 
 If you don't have Docker installed, follow the instructions here:
