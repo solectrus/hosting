@@ -289,7 +289,7 @@ docker rm senec-collector
 
 Check the arguments of your `docker run` command:
 
-- Is you SENEC devise responding to the IP address you defined as `SENEC_HOST`?
+- Is you SENEC device responding to the IP address you defined as `SENEC_HOST`?
 - Is the InfluxDB server (see Step 1) responding to the IP address you defined as `INFLUX_HOST`?
 - Did your Influx credentials given in `INFLUX_ORG`, `INFLUX_BUCKET` and `INFLUX_TOKEN` match your InfluxDB setup (see Step 1)?
 
