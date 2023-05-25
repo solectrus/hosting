@@ -1,0 +1,142 @@
+version: '3.7'
+
+services:
+  app:
+    image: ghcr.io/solectrus/solectrus:latest
+    depends_on:
+      db:
+        condition: service_healthy
+      influxdb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    links:
+      - db
+      - influxdb
+      - redis
+    ports:
+      - 3000:3000
+    environment:
+      - APP_HOST
+      - FORCE_SSL
+      - SECRET_KEY_BASE
+      - INSTALLATION_DATE
+      - ELECTRICITY_PRICE
+      - FEED_IN_TARIFF
+      - ADMIN_PASSWORD
+      - DB_HOST=db
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_USER=postgres
+      - REDIS_URL=redis://redis:6379/1
+      - INFLUX_HOST
+      - INFLUX_TOKEN=${INFLUX_TOKEN_READ}
+      - INFLUX_ORG
+      - INFLUX_BUCKET
+    healthcheck:
+      test: ['CMD-SHELL', 'nc -z 127.0.0.1 3000 || exit 1']
+    restart: always
+
+  influxdb:
+    image: influxdb:2.7-alpine
+    volumes:
+      - ${INFLUX_VOLUME_PATH}:/var/lib/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUX_USERNAME}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUX_PASSWORD}
+      - DOCKER_INFLUXDB_INIT_ORG=${INFLUX_ORG}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUX_BUCKET}
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUX_ADMIN_TOKEN}
+    command: influxd run --bolt-path /var/lib/influxdb2/influxd.bolt --engine-path /var/lib/influxdb2/engine --store disk
+    # Optional: Allow InfluxDB to be accessed from the outside.
+    # ports:
+    #   - 8086:8086
+    restart: always
+    healthcheck:
+      test: ['CMD', 'influx', 'ping']
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ${DB_VOLUME_PATH}:/var/lib/postgresql/data
+    restart: always
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 20s
+      retries: 5
+      start_period: 60s
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - ${REDIS_VOLUME_PATH}:/data
+    restart: always
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 20s
+      retries: 5
+      start_period: 60s
+
+  mqtt-collector:
+    image: ghcr.io/solectrus/mqtt-collector:latest
+    depends_on:
+      influxdb:
+        condition: service_healthy
+    links:
+      - influxdb
+    environment:
+      - INFLUX_HOST
+      - INFLUX_SCHEMA
+      - INFLUX_PORT
+      - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
+      - INFLUX_ORG
+      - INFLUX_BUCKET
+      - INFLUX_MEASUREMENT
+      - MQTT_HOST
+      - MQTT_PORT
+      - MQTT_SSL
+      - MQTT_USERNAME
+      - MQTT_PASSWORD
+      - MQTT_TOPIC_HOUSE_POW
+      - MQTT_TOPIC_GRID_POW
+      - MQTT_TOPIC_BAT_CHARGE_CURRENT
+      - MQTT_TOPIC_BAT_FUEL_CHARGE
+      - MQTT_TOPIC_BAT_POWER
+      - MQTT_TOPIC_BAT_VOLTAGE
+      - MQTT_TOPIC_CASE_TEMP
+      - MQTT_TOPIC_CURRENT_STATE
+      - MQTT_TOPIC_MPP1_POWER
+      - MQTT_TOPIC_MPP2_POWER
+      - MQTT_TOPIC_MPP3_POWER
+      - MQTT_TOPIC_INVERTER_POWER
+      - MQTT_TOPIC_WALLBOX_CHARGE_POWER
+      - MQTT_FLIP_BAT_POWER
+    restart: always
+
+  forecast-collector:
+    image: ghcr.io/solectrus/forecast-collector:latest
+    depends_on:
+      influxdb:
+        condition: service_healthy
+    links:
+      - influxdb
+    environment:
+      - INFLUX_HOST
+      - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
+      - INFLUX_ORG
+      - INFLUX_BUCKET
+      - FORECAST_LATITUDE
+      - FORECAST_LONGITUDE
+      - FORECAST_DECLINATION
+      - FORECAST_AZIMUTH
+      - FORECAST_KWP
+      - FORECAST_INTERVAL
+    restart: always

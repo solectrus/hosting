@@ -2,9 +2,13 @@
 
 There are different ways to install **SOLECTRUS**:
 
+## A: You have a SENEC.Home?
+
+If you have a SENEC.Home battery system, installing is simple. The toolchain is quiet stable and used by many users. Please choose one of the following guides:
+
 1. [Local installation on Synology NAS](/guide/synology)
 
-   You need a Synology NAS with Docker installed (tested with Synology DS220+ with 10GB RAM)
+   You need a Synology NAS (Kernel v4+) with Docker installed (tested with Synology DS220+ with 10GB RAM)
 
 2. [Local installation on Raspberry Pi](/guide/raspberry-pi)
 
@@ -14,4 +18,23 @@ There are different ways to install **SOLECTRUS**:
 
    You need a Raspberry Pi at home **and** a remote server somewhere on the internet (tested with Hetzner Cloud)
 
-Of course, you also need a SENEC device connected to your LAN (tested with a SENEC Home V3 hybrid duo).
+## B: You have a PV system, but no SENEC?
+
+If you do not have a SENEC battery system, you may still be able to use **SOLECTRUS**. There is a brand new [MQQT-collector](https://github.com/solectrus/mqtt-collector), so SOLECTRUS can be used with any PV device that supports MQTT. Please note that the MQTT-collector is in an experimental stage and I would appreciate your feedback.
+
+There are two guides available, both targeting **experienced** users having a deeper understanding of MQTT:
+
+1. [Installation for use with ioBroker](/guide/mqtt-iobroker/)
+
+   You need:
+
+   - Linux server (64bit, Kernel v4+) with Docker installed (Raspberry Pi, Synology NAS, virtual machine, etc.)
+   - Running instance of [ioBroker](https://www.iobroker.net/), which already includes a MQTT broker
+
+2. [Installation for use with evcc](/guide/mqtt-evcc/)
+
+   You need:
+
+   - Linux server (64bit, Kernel v4+) with Docker installed (Raspberry Pi, Synology NAS, virtual machine, etc.)
+   - Running instance of [evcc](https://evcc.io/)
+   - MQTT broker
