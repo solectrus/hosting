@@ -29,7 +29,7 @@ services:
       - DB_USER=postgres
       - REDIS_URL=redis://redis:6379/1
       - INFLUX_HOST
-      - INFLUX_TOKEN=${INFLUX_TOKEN_READ}
+      - INFLUX_TOKEN
       - INFLUX_ORG
       - INFLUX_BUCKET
     healthcheck:
@@ -98,7 +98,7 @@ services:
       - INFLUX_HOST
       - INFLUX_SCHEMA
       - INFLUX_PORT
-      - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
+      - INFLUX_TOKEN
       - INFLUX_ORG
       - INFLUX_BUCKET
     restart: always
@@ -112,7 +112,7 @@ services:
       - influxdb
     environment:
       - INFLUX_HOST
-      - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
+      - INFLUX_TOKEN
       - INFLUX_ORG
       - INFLUX_BUCKET
       - FORECAST_LATITUDE
