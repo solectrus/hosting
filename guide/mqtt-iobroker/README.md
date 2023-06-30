@@ -196,7 +196,11 @@ redis:7-alpine                                Up 31 second (healthy)   solectrus
 postgres:15-alpine                            Up 31 second (healthy)   solectrus-db-1
 ```
 
-8. Staying up to date
+8. Optional: Import historical data
+
+There is a repository to import historical data via CSV files. See [CSV-Importer](https://github.com/solectrus/csv-importer) for more information.
+
+9. Staying up to date
 
 To update your installation to the latest release, run:
 
