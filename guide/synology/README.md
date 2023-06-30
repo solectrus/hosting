@@ -184,7 +184,7 @@ postgres:15-alpine                            Up 31 second (healthy)   solectrus
 
 8. Optional: Import historical data
 
-On [mein-senec.de](https://mein-senec.de) you find download links for your historical data. Download the CSV files and import them into SOLECTRUS. See [SENEC-Importer](https://github.com/solectrus/senec-importer) for more information.
+On [mein-senec.de](https://mein-senec.de) you find download links for your historical data. Download the CSV files and import them into SOLECTRUS. See [CSV-Importer](https://github.com/solectrus/csv-importer) for more information.
 
 9. Staying up to date
 

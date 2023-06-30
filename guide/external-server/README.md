@@ -194,7 +194,7 @@ You are done with step 1. SOLECTRUS is now installed on your server and can be a
 
 ### h) Optional: Import historical data
 
-On [mein-senec.de](https://mein-senec.de) you find download links for your historical data. Download the CSV files and import them into SOLECTRUS. See [SENEC-Importer](https://github.com/solectrus/senec-importer) for more information.
+On [mein-senec.de](https://mein-senec.de) you find download links for your historical data. Download the CSV files and import them into SOLECTRUS. See [CSV-Importer](https://github.com/solectrus/csv-importer) for more information.
 
 ### i) Staying up to date
 
