@@ -32,6 +32,8 @@ services:
       - INFLUX_TOKEN=${INFLUX_TOKEN_READ}
       - INFLUX_ORG
       - INFLUX_BUCKET
+      - INFLUX_MEASUREMENT_PV
+      - INFLUX_MEASUREMENT_FORECAST
     healthcheck:
       test: ['CMD-SHELL', 'nc -z 127.0.0.1 3000 || exit 1']
     restart: always
@@ -99,7 +101,7 @@ services:
       - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
       - INFLUX_ORG
       - INFLUX_BUCKET
-      - INFLUX_MEASUREMENT
+      - INFLUX_MEASUREMENT=${INFLUX_MEASUREMENT_PV}
       - MQTT_HOST
       - MQTT_PORT
       - MQTT_SSL
@@ -133,6 +135,7 @@ services:
       - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
       - INFLUX_ORG
       - INFLUX_BUCKET
+      - INFLUX_MEASUREMENT=${INFLUX_MEASUREMENT_FORECAST}
       - FORECAST_LATITUDE
       - FORECAST_LONGITUDE
       - FORECAST_DECLINATION
