@@ -76,7 +76,7 @@ mkdir redis postgresql influxdb
 Download the configuration file from the repository;
 
 ```console
-curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/guide/raspberry-pi/.env" -o /home/pi/solectrus/.env
+curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/guide/raspberry-pi/.env" -o .env
 ```
 
 Edit the downloaded file and change values to your needs.
@@ -109,7 +109,7 @@ Note: Editing the file with `nano` is just an example, because this editor is pr
 4. Download Docker compose file `./docker-compose.yml`
 
 ```console
-curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/guide/raspberry-pi/docker-compose.yml" -o /home/pi/solectrus/docker-compose.yml
+curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/guide/raspberry-pi/docker-compose.yml" -o docker-compose.yml
 ```
 
 5. Start Docker containers

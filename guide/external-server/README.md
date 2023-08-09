@@ -58,7 +58,7 @@ mkdir redis postgresql influxdb
 Download the configuration file from the repository;
 
 ```console
-curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/guide/external-server/.env" -o ~/solectrus/.env
+curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/guide/external-server/.env" -o .env
 ```
 
 Edit the downloaded file and change values to your needs.
@@ -92,7 +92,7 @@ Save file and close the editor: <kbd>Ctrl+S</kbd>, then <kbd>Ctrl+X</kbd>
 ### e) Download Docker compose file `./docker-compose.yml`
 
 ```console
-curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/guide/external-server/docker-compose.yml" -o ~/solectrus/docker-compose.yml
+curl -L "https://raw.githubusercontent.com/solectrus/hosting/main/guide/external-server/docker-compose.yml" -o docker-compose.yml
 ```
 
 ### f) Start Docker containers
