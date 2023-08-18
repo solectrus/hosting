@@ -245,6 +245,7 @@ docker run \
          --restart unless-stopped \
          -d \
          -e SENEC_HOST=[YOUR-SENEC-IP-ADDRESS] \
+         -e SENEC_SCHEMA=[http OR https] \
          -e SENEC_INTERVAL=5 \
          -e INFLUX_PORT=8086 \
          -e INFLUX_HOST=[YOUR-SERVER-IP-ADDRESS] \
@@ -290,6 +291,7 @@ docker rm senec-collector
 Check the arguments of your `docker run` command:
 
 - Is you SENEC device responding to the IP address you defined as `SENEC_HOST`?
+- Have you defined the correct `SENEC_SCHEMA` (http or https)? It's the same as you use in your browser to access your SENEC device.
 - Is the InfluxDB server (see Step 1) responding to the IP address you defined as `INFLUX_HOST`?
 - Did your Influx credentials given in `INFLUX_ORG`, `INFLUX_BUCKET` and `INFLUX_TOKEN` match your InfluxDB setup (see Step 1)?
 

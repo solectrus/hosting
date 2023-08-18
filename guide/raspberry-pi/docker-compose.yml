@@ -96,6 +96,7 @@ services:
       - influxdb
     environment:
       - SENEC_HOST
+      - SENEC_SCHEMA
       - SENEC_INTERVAL
       - INFLUX_HOST
       - INFLUX_SCHEMA

@@ -67,9 +67,10 @@ Edit the downloaded file and change values to your needs.
 vim .env
 ```
 
-IMPORTANT settings, MUST be changed:
+IMPORTANT settings, MUST be changed or checked:
 
 - SENEC_HOST # Hostname or IP address of your SENEC device
+- SENEC_SCHEMA # http or https, depending on the firmware running on your SENEC device
 - APP_HOST # Hostname or IP address of your Synology NAS
 
 Not required, but highly recommended:
