@@ -180,7 +180,7 @@ ghcr.io/solectrus/forecast-collector:latest   Up 31 second             solectrus
 ghcr.io/solectrus/senec-collector:latest      Up 31 second             solectrus-senec-collector-1
 influxdb:2.7-alpine                           Up 31 second (healthy)   solectrus-influxdb-1
 redis:7-alpine                                Up 31 second (healthy)   solectrus-redis-1
-postgres:15-alpine                            Up 31 second (healthy)   solectrus-db-1
+postgres:16-alpine                            Up 31 second (healthy)   solectrus-db-1
 ```
 
 8. Optional: Import historical data

@@ -62,7 +62,7 @@ services:
       start_period: 30s
 
   db:
-    image: postgres:15-alpine
+    image: postgres:16-alpine
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
