@@ -247,6 +247,7 @@ docker run \
          -e SENEC_HOST=[YOUR-SENEC-IP-ADDRESS] \
          -e SENEC_SCHEMA=[http OR https] \
          -e SENEC_INTERVAL=5 \
+         -e SENEC_LANGUAGE=de \
          -e INFLUX_PORT=8086 \
          -e INFLUX_HOST=[YOUR-SERVER-IP-ADDRESS] \
          -e INFLUX_ORG=solectrus \
