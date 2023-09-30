@@ -3,6 +3,8 @@ version: '3.7'
 services:
   app:
     image: ghcr.io/solectrus/solectrus:latest
+    labels:
+      - 'com.centurylinklabs.watchtower.scope=solectrus'
     depends_on:
       db:
         condition: service_healthy
@@ -40,6 +42,8 @@ services:
 
   influxdb:
     image: influxdb:2.7-alpine
+    labels:
+      - 'com.centurylinklabs.watchtower.scope=solectrus'
     volumes:
       - ${INFLUX_VOLUME_PATH}:/var/lib/influxdb2
     environment:
@@ -63,6 +67,8 @@ services:
 
   db:
     image: postgres:16-alpine
+    labels:
+      - 'com.centurylinklabs.watchtower.scope=solectrus'
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
@@ -77,6 +83,8 @@ services:
 
   redis:
     image: redis:7-alpine
+    labels:
+      - 'com.centurylinklabs.watchtower.scope=solectrus'
     volumes:
       - ${REDIS_VOLUME_PATH}:/data
     restart: always
@@ -89,6 +97,8 @@ services:
 
   senec-collector:
     image: ghcr.io/solectrus/senec-collector:latest
+    labels:
+      - 'com.centurylinklabs.watchtower.scope=solectrus'
     depends_on:
       influxdb:
         condition: service_healthy
@@ -110,6 +120,8 @@ services:
 
   forecast-collector:
     image: ghcr.io/solectrus/forecast-collector:latest
+    labels:
+      - 'com.centurylinklabs.watchtower.scope=solectrus'
     depends_on:
       influxdb:
         condition: service_healthy
@@ -157,3 +169,11 @@ services:
       - FORECAST_3_DAMPING_EVENING
       - FORECAST_INTERVAL
     restart: always
+
+  watchtower:
+    image: containrrr/watchtower
+    labels:
+      - 'com.centurylinklabs.watchtower.scope=solectrus'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --scope solectrus --cleanup
