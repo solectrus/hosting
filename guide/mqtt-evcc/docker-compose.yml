@@ -36,6 +36,7 @@ services:
       - INFLUX_BUCKET
       - INFLUX_MEASUREMENT_PV
       - INFLUX_MEASUREMENT_FORECAST
+      - INFLUX_POLL_INTERVAL
     healthcheck:
       test: ['CMD-SHELL', 'nc -z 127.0.0.1 3000 || exit 1']
     restart: always
