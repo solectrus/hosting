@@ -36,11 +36,11 @@ If your are not using SSH keys, you are asked to enter your password. Type in ou
 Check if `Docker` is installed and running:
 
 ```console
-docker -v
-Docker version 23.0.3, build 3e7cbfd
+docker --version
+Docker version 24.0.7, build afdd53b
 
 docker compose version
-Docker Compose version v2.17.2
+Docker Compose version v2.21.0
 ```
 
 Nice, `Docker` is preinstalled.
@@ -218,8 +218,8 @@ Login to you Raspi and ensure that Docker is installed:
 
 ```console
 ssh pi@raspberrypi.local
-docker -v
-Docker version 23.0.6, build ef23cbc
+docker --version
+Docker version 24.0.7, build afdd53b
 ```
 
 If Docker is not installed, install it:

@@ -19,17 +19,17 @@ Login via SSH and check the version:
 
 ```console
 docker --version
-Docker version 20.10.3, build 55f0773
+Docker version 20.10.23, build 876964a
 ```
 
 Docker Compose is required as well. It is usually installed with Docker, but you can check the version:
 
 ```console
-docker-compose -v
-docker-compose version 1.28.5, build 24fb474e
+docker-compose --version
+Docker Compose version v2.9.0-6413-g38f6acd
 ```
 
-Note: The Docker package offered by Synology is a bit outdated, but it works well with SOLECTRUS. The compose utility is still v1 and is therefore invoked with `docker-compose` (instead of `docker compose` in v2).
+Note: The Docker package offered by Synology is a bit outdated, but it works well with SOLECTRUS.
 
 To ensure Docker can run without `sudo`, create a `docker` group and add your user to it:
 

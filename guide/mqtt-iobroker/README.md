@@ -41,10 +41,10 @@ Check your Docker version:
 
 ```console
 $ docker --version
-Docker version 24.0.1, build 6802122
+Docker version 24.0.7, build afdd53b
 
 $ docker compose version
-Docker Compose version v2.18.1
+Docker Compose version v2.21.0
 ```
 
 If you don't have Docker installed, follow the instructions here:
