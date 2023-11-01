@@ -2,9 +2,9 @@
 
 This guide demonstrates how to run **all** components of SOLECTRUS on a single machine:
 
-- Dashboard (the SOLECTRUS UI)
+- Dashboard (the SOLECTRUS user interface)
 - InfluxDB (the database for storing the measurements)
-- Redis (for some caching)
+- Redis (for caching)
 - PostgreSQL (the SQL database for storing settings like historical prices)
 - SENEC Collector (pulling measurements from SENEC device and pushing them to the InfluxDB)
 - Forecast-Collector (optional)
