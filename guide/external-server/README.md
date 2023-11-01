@@ -251,7 +251,7 @@ docker run \
          -e INFLUX_PORT=8086 \
          -e INFLUX_HOST=[YOUR-SERVER-IP-ADDRESS] \
          -e INFLUX_ORG=solectrus \
-         -e INFLUX_BUCKET=my-solectrus-bucket \
+         -e INFLUX_BUCKET=solectrus \
          -e INFLUX_TOKEN=my-super-secret-admin-token \
          ghcr.io/solectrus/senec-collector:latest
 ```
@@ -271,7 +271,7 @@ Copyright (c) 2020,2023 Georg Ledermann, released under the MIT License
 Using Ruby 3.2.2 on platform aarch64-linux-musl
 
 Pulling from SENEC at [YOUR-SENEC-IP-ADDRESS] every 5 seconds
-Pushing to InfluxDB at http://[YOUR-SERVER-IP-ADDRESS]:8086, bucket my-solectrus-bucket
+Pushing to InfluxDB at http://[YOUR-SERVER-IP-ADDRESS]:8086, bucket solectrus
 
 Getting state names from [YOUR-SENEC-IP-ADDRESS] by parsing source code...
 OK, got 99 state names
