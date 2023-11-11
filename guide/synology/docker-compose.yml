@@ -23,8 +23,6 @@ services:
       - FORCE_SSL
       - SECRET_KEY_BASE
       - INSTALLATION_DATE
-      - ELECTRICITY_PRICE
-      - FEED_IN_TARIFF
       - ADMIN_PASSWORD
       - DB_HOST=db
       - DB_PASSWORD=${POSTGRES_PASSWORD}
