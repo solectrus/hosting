@@ -167,6 +167,7 @@ services:
       - FORECAST_3_DAMPING_MORNING
       - FORECAST_3_DAMPING_EVENING
       - FORECAST_INTERVAL
+      - FORECAST_SOLAR_APIKEY
     restart: always
 
   watchtower:
