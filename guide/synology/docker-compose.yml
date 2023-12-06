@@ -24,6 +24,7 @@ services:
       - SECRET_KEY_BASE
       - INSTALLATION_DATE
       - ADMIN_PASSWORD
+      - FRAME_ANCESTORS
       - DB_HOST=db
       - DB_PASSWORD=${POSTGRES_PASSWORD}
       - DB_USER=postgres
