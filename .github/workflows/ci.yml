@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  docker:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate compose files
+        run: |
+          docker-compose -f guide/external-server/docker-compose.yml config -q
+          docker-compose -f guide/mqtt-evcc/docker-compose.yml config -q
+          docker-compose -f guide/mqtt-iobroker/docker-compose.yml config -q
+          docker-compose -f guide/raspberry-pi/docker-compose.yml config -q
+          docker-compose -f guide/synology/docker-compose.yml config -q
