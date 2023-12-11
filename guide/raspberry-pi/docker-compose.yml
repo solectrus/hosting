@@ -39,6 +39,10 @@ services:
     healthcheck:
       test: ['CMD-SHELL', 'nc -z 127.0.0.1 3000 || exit 1']
     restart: always
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
 
   influxdb:
     image: influxdb:2.7-alpine
@@ -64,6 +68,10 @@ services:
       timeout: 10s
       retries: 5
       start_period: 30s
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
 
   db:
     image: postgres:16-alpine
@@ -80,6 +88,10 @@ services:
       timeout: 20s
       retries: 5
       start_period: 60s
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
 
   redis:
     image: redis:7-alpine
@@ -94,6 +106,10 @@ services:
       timeout: 20s
       retries: 5
       start_period: 60s
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
 
   senec-collector:
     image: ghcr.io/solectrus/senec-collector:latest
@@ -117,6 +133,10 @@ services:
       - INFLUX_BUCKET
       - INFLUX_MEASUREMENT=${INFLUX_MEASUREMENT_PV}
     restart: always
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
 
   forecast-collector:
     image: ghcr.io/solectrus/forecast-collector:latest
@@ -170,6 +190,10 @@ services:
       - FORECAST_INTERVAL
       - FORECAST_SOLAR_APIKEY
     restart: always
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
 
   watchtower:
     image: containrrr/watchtower
@@ -178,3 +202,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --scope solectrus --cleanup
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
