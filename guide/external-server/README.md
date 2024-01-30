@@ -23,7 +23,7 @@ Order your server:
 
 ### b) First Login
 
-Wait for the email from Hetzner. Write down the IP address of your server. It will be referred later as [YOUR-SERVER-IP-ADDRESS].
+After the server has been created, it receives a public IP address. Write it down, it will be referred later [YOUR-SERVER-IP-ADDRESS].
 
 Login to your server:
 
