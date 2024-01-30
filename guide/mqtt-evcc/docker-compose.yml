@@ -218,6 +218,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --scope solectrus --cleanup
+    restart: always
     logging:
       options:
         max-size: '10m'
