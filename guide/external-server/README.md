@@ -113,25 +113,28 @@ This could take some minutes for the first run, because some images are download
 ✔ Container solectrus-senec-collector-1     Created
 Attaching to solectrus-app-1, solectrus-db-1, solectrus-forecast-collector-1, solectrus-influxdb-1, solectrus-redis-1
 ....
-solectrus-app-1                 | Starting SOLECTRUS...
-solectrus-app-1                 | Version: v0.10.1 - 2023-05-06T09:46:43+02:00
-solectrus-app-1                 | ----------------
-solectrus-app-1                 | InfluxDB is up and running!
-solectrus-app-1                 | influxdb (172.18.0.2:8086) open
-solectrus-app-1                 | PostgreSQL is up and running!
-solectrus-app-1                 | Preparing database...
-solectrus-app-1                 | db (172.18.0.3:5432) open
+app-1                 | Starting SOLECTRUS...
+app-1                 | Version: v0.14.2 - 2024-01-07T19:02:01+01:00 - v0.14.2
+app-1                 | ----------------
+app-1                 | InfluxDB is up and running!
+app-1                 | influxdb (172.18.0.2:8086) open
+app-1                 | PostgreSQL is up and running!
+app-1                 | Preparing database...
+app-1                 | db (172.18.0.3:5432) open
 ....
-solectrus-app-1                 | Created database 'solectrus_production'
-solectrus-app-1                 | Database is ready!
-solectrus-app-1                 | Puma starting in single mode...
-solectrus-app-1                 | * Puma version: 6.2.2 (ruby 3.2.2-p53) ("Speaking of Now")
-solectrus-app-1                 | *  Min threads: 5
-solectrus-app-1                 | *  Max threads: 5
-solectrus-app-1                 | *  Environment: production
-solectrus-app-1                 | *          PID: 11
-solectrus-app-1                 | * Listening on http://0.0.0.0:3000
-solectrus-app-1                 | Use Ctrl-C to stop
+app-1                 | Created database 'solectrus_production'
+app-1                 | Database is ready!
+app-1                 | => Booting Puma
+app-1                 | => Rails 7.1.2 application starting in production
+app-1                 | => Run `bin/rails server --help` for more startup options
+app-1                 | Puma starting in single mode...
+app-1                 | * Puma version: 6.4.1 (ruby 3.2.2-p53) ("The Eagle of Durango")
+app-1                 | *  Min threads: 5
+app-1                 | *  Max threads: 5
+app-1                 | *  Environment: production
+app-1                 | *          PID: 1
+app-1                 | * Listening on http://0.0.0.0:3000
+app-1                 | Use Ctrl-C to stop
 ```
 
 Note:
