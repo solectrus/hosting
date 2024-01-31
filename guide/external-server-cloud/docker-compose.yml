@@ -1,0 +1,207 @@
+version: '3.7'
+
+services:
+  app:
+    image: ghcr.io/solectrus/solectrus:latest
+    labels:
+      - 'com.centurylinklabs.watchtower.scope=solectrus'
+    depends_on:
+      db:
+        condition: service_healthy
+      influxdb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    links:
+      - db
+      - influxdb
+      - redis
+    ports:
+      - 80:3000
+    environment:
+      - APP_HOST
+      - FORCE_SSL
+      - SECRET_KEY_BASE
+      - INSTALLATION_DATE
+      - ADMIN_PASSWORD
+      - FRAME_ANCESTORS
+      - DB_HOST=db
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_USER=postgres
+      - REDIS_URL=redis://redis:6379/1
+      - INFLUX_HOST
+      - INFLUX_TOKEN=${INFLUX_TOKEN_READ}
+      - INFLUX_ORG
+      - INFLUX_BUCKET
+      - INFLUX_MEASUREMENT_PV
+      - INFLUX_MEASUREMENT_FORECAST
+      - INFLUX_POLL_INTERVAL
+      - WEB_CONCURRENCY
+    healthcheck:
+      test: ['CMD-SHELL', 'nc -z 127.0.0.1 3000 || exit 1']
+    restart: always
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
+
+  influxdb:
+    image: influxdb:2.7-alpine
+    labels:
+      - 'com.centurylinklabs.watchtower.scope=solectrus'
+    volumes:
+      - ${INFLUX_VOLUME_PATH}:/var/lib/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUX_USERNAME}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUX_PASSWORD}
+      - DOCKER_INFLUXDB_INIT_ORG=${INFLUX_ORG}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUX_BUCKET}
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUX_ADMIN_TOKEN}
+    command: influxd run --bolt-path /var/lib/influxdb2/influxd.bolt --engine-path /var/lib/influxdb2/engine --store disk
+    restart: always
+    healthcheck:
+      test: ['CMD', 'influx', 'ping']
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
+
+  db:
+    image: postgres:16-alpine
+    labels:
+      - 'com.centurylinklabs.watchtower.scope=solectrus'
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ${DB_VOLUME_PATH}:/var/lib/postgresql/data
+    restart: always
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 20s
+      retries: 5
+      start_period: 30s
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
+
+  redis:
+    image: redis:7-alpine
+    labels:
+      - 'com.centurylinklabs.watchtower.scope=solectrus'
+    volumes:
+      - ${REDIS_VOLUME_PATH}:/data
+    restart: always
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 20s
+      retries: 5
+      start_period: 30s
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
+
+  senec-collector:
+    image: ghcr.io/solectrus/senec-collector:latest
+    restart: always
+    labels:
+      - 'com.centurylinklabs.watchtower.scope=solectrus'
+    depends_on:
+      influxdb:
+        condition: service_healthy
+    links:
+      - influxdb
+    environment:
+      - SENEC_ADAPTER
+      - SENEC_USERNAME
+      - SENEC_PASSWORD
+      - SENEC_SYSTEM_ID
+      - SENEC_INTERVAL
+      - INFLUX_HOST
+      - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
+      - INFLUX_ORG
+      - INFLUX_BUCKET
+      - INFLUX_MEASUREMENT=${INFLUX_MEASUREMENT_PV}
+      - INFLUX_SCHEMA
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
+
+  forecast-collector:
+    image: ghcr.io/solectrus/forecast-collector:latest
+    labels:
+      - 'com.centurylinklabs.watchtower.scope=solectrus'
+    depends_on:
+      influxdb:
+        condition: service_healthy
+    links:
+      - influxdb
+    environment:
+      - INFLUX_HOST
+      - INFLUX_TOKEN=${INFLUX_TOKEN_WRITE}
+      - INFLUX_ORG
+      - INFLUX_BUCKET
+      - INFLUX_MEASUREMENT=${INFLUX_MEASUREMENT_FORECAST}
+      - FORECAST_LATITUDE
+      - FORECAST_LONGITUDE
+      - FORECAST_DECLINATION
+      - FORECAST_AZIMUTH
+      - FORECAST_KWP
+      - FORECAST_CONFIGURATIONS
+      - FORECAST_0_LATITUDE
+      - FORECAST_0_LONGITUDE
+      - FORECAST_0_DECLINATION
+      - FORECAST_0_AZIMUTH
+      - FORECAST_0_KWP
+      - FORECAST_0_DAMPING_MORNING
+      - FORECAST_0_DAMPING_EVENING
+      - FORECAST_1_LATITUDE
+      - FORECAST_1_LONGITUDE
+      - FORECAST_1_DECLINATION
+      - FORECAST_1_AZIMUTH
+      - FORECAST_1_KWP
+      - FORECAST_1_DAMPING_MORNING
+      - FORECAST_1_DAMPING_EVENING
+      - FORECAST_2_LATITUDE
+      - FORECAST_2_LONGITUDE
+      - FORECAST_2_DECLINATION
+      - FORECAST_2_AZIMUTH
+      - FORECAST_2_KWP
+      - FORECAST_2_DAMPING_MORNING
+      - FORECAST_2_DAMPING_EVENING
+      - FORECAST_3_LATITUDE
+      - FORECAST_3_LONGITUDE
+      - FORECAST_3_DECLINATION
+      - FORECAST_3_AZIMUTH
+      - FORECAST_3_KWP
+      - FORECAST_3_DAMPING_MORNING
+      - FORECAST_3_DAMPING_EVENING
+      - FORECAST_INTERVAL
+      - FORECAST_SOLAR_APIKEY
+    restart: always
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
+
+  watchtower:
+    image: containrrr/watchtower
+    labels:
+      - 'com.centurylinklabs.watchtower.scope=solectrus'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --scope solectrus --cleanup
+    restart: always
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'

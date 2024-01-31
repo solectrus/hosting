@@ -20,6 +20,13 @@ If you have a SENEC.Home battery system, installing is simple. The toolchain is 
 
    Server costs at Hetzner: €4,51 per month
 
+4. [Remote installation with cloud access to SENEC](/guide/external-server-cloud)
+
+   You need a remote server somewhere on the internet (tested with Hetzner Cloud). No Raspberry or other local hardware required. Data is pulled from SENEC via cloud access by using your credentials from mein-senec.de
+   **Please note: Cloud access is new and not yet tested by many users.**
+
+   Server costs at Hetzner: €4,51 per month
+
 ## B: You have a PV system, but no SENEC?
 
 If you do not have a SENEC battery system, you may still be able to use **SOLECTRUS**. There is a brand new [MQQT-collector](https://github.com/solectrus/mqtt-collector), so SOLECTRUS can be used with any PV device that supports MQTT. Please note that the MQTT-collector is in an experimental stage and I would appreciate your feedback.
