@@ -6,9 +6,9 @@ This guides demonstrates how to set up a SOLECTRUS instance on a remote server (
 
 ### a) Order your server at Hetzner
 
-Signup on Hetzner:
+Sign up on Hetzner:
 https://hetzner.cloud/?ref=NggV8HU9FqCz
-(referral link, will give you an discount of €20)
+(referral link, will give you a discount of €20 - and me too)
 
 Order your server:
 
