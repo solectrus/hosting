@@ -220,7 +220,7 @@ Login to you Raspi and ensure that Docker is installed:
 ```console
 ssh pi@raspberrypi.local
 docker --version
-Docker version 24.0.7, build afdd53b
+Docker version 25.0.1, build 29cf629
 ```
 
 If Docker is not installed, install it:
