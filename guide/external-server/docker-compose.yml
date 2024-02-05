@@ -74,6 +74,9 @@ services:
         max-file: '3'
 
   db:
+    # Don't change major version if you have an existing database!
+    # If you have started with an older major version (like 15), you need to migrate your database.
+    # This is not worth the effort, so don't do it.
     image: postgres:16-alpine
     labels:
       - 'com.centurylinklabs.watchtower.scope=solectrus'
