@@ -110,8 +110,8 @@ This could take some minutes for the first run, because some images are download
 ✔ Container solectrus-redis-1               Created
 ✔ Container solectrus-app-1                 Created
 ✔ Container solectrus-forecast-collector-1  Created
-✔ Container solectrus-senec-collector-1     Created
-Attaching to solectrus-app-1, solectrus-db-1, solectrus-forecast-collector-1, solectrus-influxdb-1, solectrus-redis-1
+✔ Container solectrus-watchtower-1          Created
+Attaching to solectrus-app-1, solectrus-db-1, solectrus-forecast-collector-1, solectrus-influxdb-1, solectrus-redis-1, solectrus-watchtower-1
 ....
 app-1                 | Starting SOLECTRUS...
 app-1                 | Version: v0.14.2 - 2024-01-07T19:02:01+01:00 - v0.14.2
@@ -163,6 +163,7 @@ Starting solectrus_db_1                 ... done
 Starting solectrus_influxdb_1           ... done
 Starting solectrus_forecast-collector_1 ... done
 Starting solectrus_app_1                ... done
+Starting solectrus_watchtower_1         ... done
 ```
 
 To check if this works, reboot the machine:
