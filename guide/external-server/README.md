@@ -316,3 +316,7 @@ Change them until pulling and pushing works.
 You are done. You should see the measurements from your SENEC device in your SOLECTRUS instance:
 
 `http://[YOUR-SERVER-IP-ADDRESS]`
+
+### d) Optional: secure your SOLECTRUS installation
+
+If you want to use `https` to access your SOLECTRUS installation, please check out the separate [installation instructions](README-https.md).
