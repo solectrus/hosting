@@ -12,13 +12,13 @@ Using these tools, you need to choose a name for your subdomain and add the IP a
 
 For example, let's say you own `mydomain.de`, your server has IP address 1.2.3.4 and your chosen SOLECTURS subdomain is `solectrus.mydomain.de`. You will need to add an "A" record to your DNS that maps `solectrus.mydomain.de` to the address 1.2.3.4
 
-To verify if this step was successful, try accessing `http://solectrus.mydomain.de` from your browser.
+To verify if this step was successful, try accessing `http://solectrus.mydomain.de` from your browser or use tools `
 
 ### b) change the firewall configuration for your server
 
-Go to your server configuration console. Add a firewall rule that allows incoming traffic on port 8186. (Ports 22, 80 and 443 should remain as allowed). 
+Go to your server's configuration console. Add a firewall rule that allows incoming traffic on port 8186. (Ports 22, 80 and 443 should remain as allowed). 
 
-Any previous rule allowing incoming traffic on port 8086 can be removed as it is no longer needed.
+Any previous rule allowing incoming traffic on port 8086 should be removed as it is no longer needed.
 
 ### c) add traefik and Let's Encrypt to your docker configuration
 
@@ -33,38 +33,35 @@ chmod 600 letsencrypt/acme.json
 Open your docker-compose.yml file in an editor and add this snippet:
 
 ```
-  traefik:
-    image: "traefik:v2.10"
-    container_name: "traefik"
-    command:
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443"
-      - "--entrypoints.influxdb.address=:8186"
-      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.email=EMAIL@MYDOMAIN.DE"
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-    ports:
-      - "80:80"
-      - "443:443"
-      - "8186:8186"
-      - "8080:8080"
-    volumes:
-      - "./letsencrypt:/letsencrypt"
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-
+traefik:
+image: "traefik:v2.11"
+container_name: "traefik"
+command:
+  - "--providers.docker=true"
+  - "--providers.docker.exposedbydefault=false"
+  - "--entrypoints.web.address=:80"
+  - "--entrypoints.websecure.address=:443"
+  - "--entrypoints.influxdb.address=:8186"
+  - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+  - "--certificatesresolvers.myresolver.acme.email=email@mydomain.de"
+  - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+ports:
+  - "80:80"
+  - "443:443"
+  - "8186:8186"
+volumes:
+  - "./letsencrypt:/letsencrypt"
+  - "/var/run/docker.sock:/var/run/docker.sock:ro"
 ```
 
-to the `services` section. Replace `EMAIL@MYDOMAIN.DE` with an email address that you own. This adds the `traefik` proxy which will listen on ports 80 (for `http`), 443 (for `https`) and 8186 (for the influxdb collector).
+to the `services` section. Replace `email@mydomain.de` with an email address that you own. This adds the `traefik` proxy which will listen on ports 80 (for `http`), 443 (for `https`) and 8186 (for the influxdb collector).
 
 Now, add this snippet to the `app` section of your docker-compose:
 
 ```
 labels:
   - "traefik.enable=true"
-  - "traefik.http.routers.app-solectrus.rule=Host(`SOLECTRUS.MYDOMAIN.DE`)"
+  - "traefik.http.routers.app-solectrus.rule=Host(`solectrus.mydomain.de`)"
   - "traefik.http.routers.app-solectrus.entrypoints=websecure"
   - "traefik.http.routers.app-solectrus.tls.certresolver=myresolver"
   - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
@@ -73,21 +70,21 @@ labels:
   - "traefik.http.routers.redirs.middlewares=redirect-to-https"
 ```
 
-(replacing `SOLECTRUS.MYDOMAIN.DE` with your chosen subdomain name). This puts SOLECTRUS under traefik's control and allows access via `https://solectrus.mydomain.de`. Also, all requests to `http://solectrus.mydomain.de` will be redirected to `https://solectrus.mydomain.de`.
+(replacing `solectrus.mydomain.de` with your chosen subdomain name). This puts SOLECTRUS under traefik's control and allows access via `https://solectrus.mydomain.de`. Also, all requests to `http://solectrus.mydomain.de` will be redirected to `https://solectrus.mydomain.de`.
 
 Lastly, add this snippet to the `influxdb` section:
 
 ```
 labels:
   - "traefik.enable=true"
-  - "traefik.http.routers.influxdb-solectrus.rule=Host(`SOLECTRUS.MYDOMAIN.DE`)"
+  - "traefik.http.routers.influxdb-solectrus.rule=Host(`solectrus.mydomain.de`)"
   - "traefik.http.routers.influxdb-solectrus.entrypoints=influxdb"
   - "traefik.http.routers.influxdb-solectrus.tls.certresolver=myresolver"
   - "traefik.http.routers.influxdb-solectrus.tls=true"
 
 ```
 
-Again, replacing `SOLECTRUS.MYDOMAIN.DE` with your chosen subdomain. This puts the InfluxDB database under traefik's control and makes it avaiable via `https://solectrus.mydomain.de:8186` 
+Again, replacing `solectrus.mydomain.de` with your chosen subdomain. This puts the InfluxDB database under traefik's control and makes it avaiable via `https://solectrus.mydomain.de:8186` 
 
 Save your changes to docker-compose.yml.
 
@@ -98,23 +95,21 @@ version: '3.7'
 
 services:
   traefik:
-    image: "traefik:v2.10"
+    image: "traefik:v2.11"
     container_name: "traefik"
     command:
-      - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
       - "--entrypoints.influxdb.address=:8186"
       - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.email=EMAIL@MYDOMAIN.DE"
+      - "--certificatesresolvers.myresolver.acme.email=email@mydomain.de"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
       - "80:80"
       - "443:443"
       - "8186:8186"
-      - "8080:8080"
     volumes:
       - "./letsencrypt:/letsencrypt"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
@@ -123,7 +118,7 @@ services:
     image: ghcr.io/solectrus/solectrus:develop
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.app-solectrus.rule=Host(`SOLECTRUS.MYDOMAIN.DE`)"
+      - "traefik.http.routers.app-solectrus.rule=Host(`solectrus.mydomain.de`)"
       - "traefik.http.routers.app-solectrus.entrypoints=websecure"
       - "traefik.http.routers.app-solectrus.tls.certresolver=myresolver"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
@@ -138,7 +133,7 @@ services:
     image: influxdb:2.7-alpine
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.influxdb-solectrus.rule=Host(`SOLECTRUS.MYDOMAIN.DE`)"
+      - "traefik.http.routers.influxdb-solectrus.rule=Host(`solectrus.mydomain.de`)"
       - "traefik.http.routers.influxdb-solectrus.entrypoints=influxdb"
       - "traefik.http.routers.influxdb-solectrus.tls.certresolver=myresolver"
       - "traefik.http.routers.influxdb-solectrus.tls=true"
@@ -153,7 +148,19 @@ You should now be able to restart your containers using `docker compose up -d`. 
 
 Note that whenever you restart the solectrus-app container, it takes a short while for traefik to notice that it is available again. Getting "404 page not found" responses immediately after restarting is normal and no cause for concern.
 
-### d) reconfigure your senec-collector to use the encrypted connection
+### d) (optional) add the host name and SSL support to your .env
+
+Optionally, you can edit your `.env` file and change the settings for `APP_HOST` and `FORCE_SSL`
+The new values should be
+
+```
+APP_HOST=solectrus.mydomain.de # replace with your subdomain name
+FORCE_SSL=true
+```
+
+This will enable redirecting requests to `http://[YOUR-SERVER-IP-ADDRESS]` to `https://solectrus.mydomain.de`. (You will have to 
+
+### e) reconfigure your senec-collector to use the encrypted connection
 
 Login to your Raspberry Pi and change the startup command for your senec collector to the following:
 
@@ -167,8 +174,7 @@ docker run \
          -e SENEC_SCHEMA=https \
          -e SENEC_INTERVAL=5 \
          -e SENEC_LANGUAGE=de \
-         -e INFLUX_PORT=8186 \
-         -e INFLUX_HOST=SOLECTRUS.MYDOMAIN.DE \
+         -e INFLUX_HOST=solectrus.mydomain.de \
          -e INFLUX_PORT=8186 \
          -e INFLUX_SCHEMA=https \
          -e INFLUX_ORG=solectrus \
@@ -177,6 +183,6 @@ docker run \
          ghcr.io/solectrus/senec-collector:latest
 ```
 
-Again, replacing SOLECTRUS.MYDOMAIN.DE with your chosen subdomain. This adds `INFLUX_PORT` and `INFLUX_SCHEMA` to use https on your newly defined port 8186 which uses `https`. Restart senec-collector, you should now see new measurement data on `https://solectrus.mydomain.de`.
+Again, replacing `solectrus.mydomain.de` with your chosen subdomain. This adds `INFLUX_PORT` and `INFLUX_SCHEMA` to use https on your newly defined port 8186 which uses `https`. Restart senec-collector, you should now see new measurement data on `https://solectrus.mydomain.de`.
 
 Congratulations! :-)
