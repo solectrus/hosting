@@ -1,5 +1,4 @@
 # Securing your SOLECTRUS installation
-
 This guide assumes that you have a working SOLECTURS installation that is reachable via http, e.g. after following the instructions for the [Distributed installation](README.md) or the [Remote installation with cloud access](../external-server-cloud/README.md).
 
 To secure your SOLECTRUS installation using [traefik](https://github.com/traefik/traefik) and [Let's Encrypt](https://letsencrypt.com), follow these steps.
@@ -51,6 +50,7 @@ traefik:
   volumes:
     - "./letsencrypt:/letsencrypt"
     - "/var/run/docker.sock:/var/run/docker.sock:ro"
+  restart: always
 ```
 
 to the `services` section. Replace `email@mydomain.de` with an email address that you own. This adds the `traefik` proxy which will listen on ports 80 (for http), 443 (for https) and 8086 (for the influxdb collector).
