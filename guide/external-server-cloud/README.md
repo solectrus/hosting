@@ -206,8 +206,12 @@ docker compose up -d
 
 To not have to do this manually every time, the `docker-compose.yml` contains [Watchtower](https://containrrr.dev/watchtower/), which is a free tool to automatically update running Docker containers. Once installed, it will check for new Docker images once every day and updates your containers automatically. And of course, Watchtower also runs in a Docker container.
 
-### c) Finish!
+### k) Finish!
 
 You are done. You should see the measurements from your SENEC device in your SOLECTRUS instance:
 
 `http://[YOUR-SERVER-IP-ADDRESS]`
+
+### l) Optional: secure your SOLECTRUS installation
+
+If you want to use `https` to access your SOLECTRUS installation, please check out the separate [installation instructions](README-https.md), simply ignore the section that talks about configuring `senec-collector`.
