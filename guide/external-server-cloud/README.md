@@ -145,7 +145,7 @@ Note:
 
 Open `http://[YOUR-SERVER-IP-ADDRESS]` in your browser. You should see the dashboard.
 
-### i) Run services in the background
+### h) Run services in the background
 
 Stop services by pressing <kbd>Ctrl+C</kbd>. Then start again as daemon:
 
@@ -182,17 +182,17 @@ postgres:16-alpine                            Up 31 seconds (healthy) ...
 redis:7-alpine                                Up 31 seconds (healthy) ...
 ```
 
-### j) Finish!
+### i) Finish!
 
 You are done with step 1. SOLECTRUS is now installed on your server and can be accessed from your browser.
 
 `http://[YOUR-SERVER-IP-ADDRESS]`
 
-### h) Optional: Import historical data
+### j) Optional: Import historical data
 
 On [mein-senec.de](https://mein-senec.de) you find download links for your historical data. Download the CSV files and import them into SOLECTRUS. See [CSV-Importer](https://github.com/solectrus/csv-importer) for more information.
 
-### i) Staying up to date
+### k) Staying up to date
 
 To update your installation to the latest release, run:
 
@@ -206,12 +206,12 @@ docker compose up -d
 
 To not have to do this manually every time, the `docker-compose.yml` contains [Watchtower](https://containrrr.dev/watchtower/), which is a free tool to automatically update running Docker containers. Once installed, it will check for new Docker images once every day and updates your containers automatically. And of course, Watchtower also runs in a Docker container.
 
-### k) Finish!
+### l) Finish!
 
 You are done. You should see the measurements from your SENEC device in your SOLECTRUS instance:
 
 `http://[YOUR-SERVER-IP-ADDRESS]`
 
-### l) Optional: secure your SOLECTRUS installation
+### m) Optional: secure your SOLECTRUS installation
 
-If you want to use `https` to access your SOLECTRUS installation, please check out the separate [installation instructions](README-https.md), simply ignore the section that talks about configuring `senec-collector`.
+If you want to use `https` to access your SOLECTRUS installation, please check out the separate [installation instructions](../external-server/README-https.md), simply ignore the section that talks about configuring `senec-collector`.
