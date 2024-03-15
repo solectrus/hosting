@@ -159,7 +159,7 @@ services:
    ... more original configuration here ...
 ```
 
-You should now be able to restart your containers using `docker compose up -d`. After all containers have been restarted, traefik will automatically fetch (and later renew) a TLS certificate for your subdomain, this process will take a few minutes at most. After waiting a little, you should be able to access `https://solectrus.mydomain.de` without getting any security warnings in your browser. `https://solectrus.mydomain.de:8086` should should the InfluxDB admin login page.
+You should now be able to restart your containers using `docker compose up -d`. After all containers have been restarted, traefik will automatically fetch (and later renew) a TLS certificate for your subdomain, this process will take a few minutes at most. After waiting a little, you should be able to access `https://solectrus.mydomain.de` without getting any security warnings in your browser. `https://solectrus.mydomain.de:8086` should the InfluxDB admin login page.
 
 Note that whenever you restart traefik or the solectrus-app container, it takes a short while for traefik to be fully available again. Getting "404 page not found" responses immediately after restarting is normal and no cause for concern.
 
@@ -173,7 +173,7 @@ APP_HOST=solectrus.mydomain.de # replace with your subdomain name
 FORCE_SSL=true
 ```
 
-This will enable redirecting requests to `http://[YOUR-SERVER-IP-ADDRESS]` to `https://solectrus.mydomain.de`. (You will have to 
+This will enable redirecting requests to `http://[YOUR-SERVER-IP-ADDRESS]` to `https://solectrus.mydomain.de`. (You will have to deal with a security warning from your browser)
 
 ### g) reconfigure your senec-collector to use the encrypted connection
 
