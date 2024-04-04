@@ -1,5 +1,7 @@
 # SOLECTRUS Hosting Guide
 
+**Currently, I'm working on the SOLECTRUS Configurator, a web-based tool to configure your SOLECTRUS installation. It is intended to make the installation process easier and more user-friendly and will replace the current guides. The Configurator can already be checked out at [configurator.solectrus.de](https://configurator.solectrus.de). BEWARE: It will install beta versions of SOLECTRUS and is not yet fully tested. If you are not interested in experimenting, please use the guides below.**
+
 There are different ways to install **SOLECTRUS**:
 
 ## A: You have a SENEC.Home?
