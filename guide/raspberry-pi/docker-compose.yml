@@ -125,10 +125,14 @@ services:
     links:
       - influxdb
     environment:
+      - SENEC_ADAPTER
       - SENEC_HOST
       - SENEC_SCHEMA
-      - SENEC_INTERVAL
       - SENEC_LANGUAGE
+      - SENEC_USERNAME
+      - SENEC_PASSWORD
+      - SENEC_SYSTEM_ID
+      - SENEC_INTERVAL
       - INFLUX_HOST
       - INFLUX_SCHEMA
       - INFLUX_PORT
