@@ -77,11 +77,7 @@ Not required, but highly recommended:
 - INSTALLATION_DATE
 - INFLUX_PASSWORD
 - INFLUX_ADMIN_TOKEN
-- FORECAST_LATITUDE
-- FORECAST_LONGITUDE
-- FORECAST_DECLINATION
-- FORECAST_AZIMUTH
-- FORECAST_KWP
+- FORECAST_PROVIDER (and related forecast variables)
 
 WARNING: Don't forget to change passwords, because otherwise everyone can access your database!
 

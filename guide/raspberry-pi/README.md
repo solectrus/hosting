@@ -96,11 +96,7 @@ Not required, but highly recommended:
 - INSTALLATION_DATE
 - INFLUX_PASSWORD
 - INFLUX_ADMIN_TOKEN
-- FORECAST_LATITUDE
-- FORECAST_LONGITUDE
-- FORECAST_DECLINATION
-- FORECAST_AZIMUTH
-- FORECAST_KWP
+- FORECAST_PROVIDER (and related forecast variables)
 
 Note: Editing the file with `nano` is just an example, because this editor is pre-installed. You can use any editor you like.
 

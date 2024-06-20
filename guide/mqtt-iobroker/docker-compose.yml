@@ -172,6 +172,7 @@ services:
       - INFLUX_ORG
       - INFLUX_BUCKET
       - INFLUX_MEASUREMENT=${INFLUX_MEASUREMENT_FORECAST}
+      - FORECAST_PROVIDER
       - FORECAST_LATITUDE
       - FORECAST_LONGITUDE
       - FORECAST_DECLINATION
@@ -212,6 +213,10 @@ services:
       - FORECAST_DAMPING_EVENING
       - FORECAST_HORIZON
       - FORECAST_INVERTER
+      - SOLCAST_APIKEY
+      - SOLCAST_SITE
+      - SOLCAST_0_SITE
+      - SOLCAST_1_SITE
     restart: always
     logging:
       options:

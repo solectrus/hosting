@@ -78,11 +78,7 @@ Not required, but highly recommended:
 - INSTALLATION_DATE
 - INFLUX_PASSWORD
 - INFLUX_ADMIN_TOKEN
-- FORECAST_LATITUDE
-- FORECAST_LONGITUDE
-- FORECAST_DECLINATION
-- FORECAST_AZIMUTH
-- FORECAST_KWP
+- FORECAST_PROVIDER (and related forecast variables)
 
 Note: Editing the file with `vim` is just an example, because this is the pre-installed editor. You can use any editor you like. If you are not familiar with `vim`, you can use [TextEditor](https://www.synology.com/dsm/packages/TextEditor) by Synology which can be installed as package via DSM.
 
